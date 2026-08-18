@@ -4,6 +4,8 @@
 
 **This repository is where the other three projects get deployed to normal field users.**
 
+**[Download the one-page printable Field Maps Offline TPKX Quick Guide](Field_Maps_Offline_TPKX_Quick_Guide.pdf)**
+
 The manufacturing side can be complicated. The operator side should not be.
 
 ```text
@@ -128,7 +130,8 @@ For a normal user, the intended procedure is deliberately short:
 6. Turn Wi-Fi off and prove the local imagery still pans and zooms.
 ```
 
-See [Field Maps SD-Card Quick Guide](FIELD_MAPS_SD_CARD_QUICK_GUIDE.md).
+- [Read the Markdown quick guide](FIELD_MAPS_SD_CARD_QUICK_GUIDE.md)
+- [Download the one-page printable PDF](Field_Maps_Offline_TPKX_Quick_Guide.pdf)
 
 ---
 
