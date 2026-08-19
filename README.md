@@ -52,6 +52,24 @@ ArcGIS Earth native GNSS continues to own the operator's own-position blue dot. 
 
 The preserved original package is published in the feature folder.
 
+### [QR Command Bridge — optical dispatch + approved commands](features/qr-command-bridge/README.md)
+
+**LIVE-PROVEN FOUNDATION / COMMAND EXPANSION DESIGNED.** The QR branch uses a phone screen or printed QR as a deliberately narrow optical input to the Windows field computer.
+
+```text
+phone / QR card
+→ Windows camera
+→ QR decoder
+→ strict parser / hard-coded allowlist
+→ dispatch result or approved local action
+```
+
+The Gold lineage already proved camera decode, MacroDroid SMS JSON, coordinate parsing, normal message display, `GMDS_CMD:TEST`, and blocking of unknown command tokens.
+
+The modern ArcGIS Earth API and Windows command actions are the next branch. They remain **DESIGNED until individually implemented and live-tested**.
+
+Hard rule: **QR text is data, never executable shell text.**
+
 ---
 
 ## Why this project exists
@@ -60,7 +78,7 @@ Many field users already have ArcGIS Field Maps or ArcGIS Earth but use only a s
 
 They want to look down at useful geography, see where they are, and have the screen keep working when cellular service is weak, absent, expensive, or simply turned off.
 
-This repository also owns optional user-facing ArcGIS Earth features such as PRAVE Live when they have passed real-target testing.
+This repository also owns optional user-facing ArcGIS Earth / Windows features such as PRAVE Live and QR Command Bridge when they belong at the deployment-to-the-human end of the system.
 
 This project deliberately separates the roles:
 
@@ -179,7 +197,7 @@ Proved that ArcGIS Earth on Windows can open a production-scale native TPKX dire
 
 **Deployment to the human.**
 
-The other projects make and prove the machinery. This one presents the finished user workflows and live ArcGIS Earth features.
+The other projects make and prove the machinery. This one presents the finished user workflows and live ArcGIS Earth / Windows features.
 
 ---
 
@@ -190,6 +208,7 @@ The other projects make and prove the machinery. This one presents the finished 
 - Local files outrank streaming when the same useful imagery can already be on the device.
 - Do not fill cards or screens with features merely because GIS software supports them.
 - Add live overlays or GIS extras only when real field users demonstrate a need.
+- QR command inputs must remain explicit allowlisted data, never arbitrary executable text.
 - Preserve exact source/zoom/build and feature-package information so deployments can be reproduced.
 - Respect all third-party imagery, basemap, attribution, caching, export, and redistribution terms.
 - The real target application decides acceptance.
@@ -198,6 +217,6 @@ The other projects make and prove the machinery. This one presents the finished 
 
 # The simple version
 
-> **Prepared geography. Own position. Live field units when needed. Go to work.**
+> **Prepared geography. Own position. Live field units and deliberate commands when needed. Go to work.**
 
 If you want to know how the maps are manufactured, follow the links above and have a drink from the firehose.
