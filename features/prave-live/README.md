@@ -86,7 +86,7 @@ Run_AE_PRAVE_SELF_TEST.bat
 
 The original README was written before the physical ArcGIS Earth acceptance run, so it still calls the combined live path a TEST awaiting acceptance. The later real-target test passed; the implementation path is now LIVE-PROVEN. The original package is preserved rather than rewritten after the fact.
 
-The original `README.txt` and BAT launchers are also visible in this folder for quick inspection. The authoritative Python source remains inside the preserved ZIP so the evidence package stays exact.
+The GitHub feature folder is intentionally lean: this page plus the exact preserved ZIP. All original source/support files stay together inside the package.
 
 ## Original package assumptions
 
