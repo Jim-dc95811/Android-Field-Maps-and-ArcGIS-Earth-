@@ -1,0 +1,45 @@
+AE SYSTEM CHECK v0.1.0 — BUILD / SELF-TEST RECORD
+
+Status: BUILT / SELF-TESTED — ARCGIS EARTH LIVE ACCEPTANCE PENDING
+
+Candidate:
+AE_SYSTEM_CHECK_v0_1_0.tpkx
+4,196,743 bytes
+SHA-256: 7843afedb94fdc3654be9eadd1c8d18d14bd2c70abd3d5a1d88f5278c1776390
+
+Synthetic test footprint:
+Base tile: Z16 x18204 y27038 (XYZ)
+West:  -80.002441406250
+South:  29.997759725579
+East:   -79.996948242188
+North:   30.002516938571
+
+Tile ladder:
+Z16:   1
+Z17:   4
+Z18:  16
+Z19:  64
+Z20: 256
+Total: 341
+
+PASS  MBTiles zoom counts exact: [(16, 1), (17, 4), (18, 16), (19, 64), (20, 256)]
+PASS  MBTiles format metadata = png
+PASS  MBTiles contains 341 tile records for comparison
+PASS  TPKX ZIP CRC verification
+PASS  Required root.json / iteminfo.json / thumbnail.png present
+PASS  root.json minLOD=16 maxLOD=20
+PASS  Compact Cache V2 packetSize=128
+PASS  One Compact V2 bundle per represented level: 5 bundles
+PASS  Compact V2 nonzero index counts exact: [(16, 1), (17, 4), (18, 16), (19, 64), (20, 256)]
+PASS  All 341 PNG tile byte hashes match MBTiles → Compact Cache V2 exactly
+
+Color ladder:
+Z16 red
+Z17 blue
+Z18 green
+Z19 orange
+Z20 purple
+
+Each tile includes intentional boundary marks, zoom-level identity, local row/column identity, XYZ address, crosshair/rings, and high-frequency patterns for resampling inspection.
+
+This record proves package construction and byte preservation. It does not promote the candidate to LIVE-PROVEN. ArcGIS Earth on the real target remains the acceptance authority.
