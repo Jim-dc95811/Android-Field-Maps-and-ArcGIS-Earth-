@@ -2,7 +2,48 @@
 
 This file preserves the tested lineage behind the user-facing QR Command Bridge feature.
 
-## Canonical preserved packages
+## Origin before QR — Android Phone FireTextSender
+
+The dispatch-side precursor is preserved as:
+
+```text
+Android Phone FireTextSender.zip
+size: 3,375,142 bytes
+SHA-256: 4a7990644f0da321f259e977ef16c7f20f45bb0ec2159df89afcb3abc541cf07
+```
+
+Its core workflow was:
+
+```text
+Windows Google Maps
+→ copy decimal coordinates
+→ FireTextSender
+→ ADB over USB
+→ Android SMS composer
+→ field recipient
+```
+
+The mature desktop-button version was deliberately simple: one unit, one button, one phone number. It detected copied decimal coordinates, built a timestamped Google Maps link, and handed the message to a USB-connected Android phone through ADB.
+
+That work established the phone as a controlled bridge between the Windows dispatch computer and ordinary cellular messaging.
+
+The later QR receiver inverted the receiving side:
+
+```text
+incoming SMS on Android
+→ MacroDroid clipboard JSON
+→ QR on phone
+→ Windows camera
+→ coordinate / message / command parser
+```
+
+That is why FireTextSender is the operational ancestor of the QR branch even though it did not itself generate QR codes.
+
+The original FireTextSender archive contains deployment-specific phone numbers and machine paths. Its exact original is therefore preserved in the canonical project archive rather than mirrored raw to the public repository. See [`origins/fire-text-sender/`](origins/fire-text-sender/README.md).
+
+---
+
+## Canonical preserved QR receiver packages
 
 The exact original ZIPs remain preserved in the project archive / canonical Library. Do not reconstruct them from this page and call the result the original package.
 
@@ -121,10 +162,41 @@ This separation prevents every incoming text from automatically taking over the 
 
 ---
 
+## New utility — URL QR Maker v0.1.0
+
+The new local QR-generation utility is preserved as:
+
+```text
+URL_QR_MAKER_v0_1_0.zip
+size: 128,299 bytes
+SHA-256: f2f31ee0e12502734f46a6671516f6ce093e7d2b5b41dbaeb17cab2db5f97033
+```
+
+Purpose:
+
+```text
+exact URL
+→ offline local QR generation
+→ SVG QR image
+→ matching TXT record of exact encoded URL
+```
+
+The portable archive bundles the Python `qrcode` library locally and includes its license, so QR generation itself does not require Internet access.
+
+The core source, BAT launcher, self-test record, and third-party license are published under [`tools/url-qr-maker/`](tools/url-qr-maker/README.md).
+
+Status: **BUILT / SELF-TESTED**.
+
+This is a generator utility, not the receiver. It complements QR Command Bridge by creating exact QR payloads locally.
+
+---
+
 ## Proven end-to-end lineage
 
 ```text
-Incoming SMS
+FireTextSender
+→ phone becomes dispatch bridge
+→ SMS carries coordinates
 → MacroDroid clipboard JSON
 → operator-controlled QR display
 → Windows camera / OpenCV
@@ -142,6 +214,14 @@ Observed/proven behaviors included:
 - `GMDS_CMD:TEST` produces a latched successful command result;
 - unknown commands are blocked;
 - tested Android restart preserved clipboard state and MacroDroid widgets returned usable.
+
+The new URL QR Maker adds the opposite local utility direction:
+
+```text
+Windows text / URL
+→ local QR generation
+→ phone or other camera can scan it
+```
 
 ---
 
