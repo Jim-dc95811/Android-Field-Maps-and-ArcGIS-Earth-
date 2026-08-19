@@ -4,9 +4,9 @@
 
 **This repository is the deployment-to-the-user end of the four-project family.**
 
-It owns the simple human-facing workflows: prepared local maps on Android, optional Windows ArcGIS Earth features such as PRAVE Live and QR Command Bridge, and imagery-based terrain training.
+It owns the simple human-facing workflows: prepared local maps on Android, optional Windows ArcGIS Earth features such as PRAVE Live and QR Command Bridge, a standard AE System Check diagnostic map, and imagery-based terrain training.
 
-**Keywords:** ArcGIS Field Maps, ArcGIS Earth, offline Android maps, TPKX, microSD, offline field mapping, GNSS, PRAVE, QR code, QR Command Bridge, MacroDroid, dispatch mapping, Windows field computer, cellular-data protection, offline GIS, wildland fire, terrain training, aerial imagery, topographic training
+**Keywords:** ArcGIS Field Maps, ArcGIS Earth, offline Android maps, TPKX, microSD, offline field mapping, GNSS, PRAVE, QR code, QR Command Bridge, MacroDroid, dispatch mapping, Windows field computer, cellular-data protection, offline GIS, wildland fire, terrain training, aerial imagery, topographic training, LOD calibration, tile diagnostics, system check map
 
 **[Download the one-page printable Field Maps Offline TPKX Quick Guide](Field_Maps_Offline_TPKX_Quick_Guide.pdf)**
 
@@ -33,6 +33,7 @@ Current evidence state:
 
 Current card-planning direction:
 
+- **AE SYSTEM CHECK** — standard synthetic diagnostic TPKX
 - District — Z17
 - County — Z18
 - State Forests / selected high-value areas — Z20
@@ -180,6 +181,40 @@ The long-term idea is to capture experienced-firefighter reasoning from real ima
 
 ---
 
+## User feature 5 — AE SYSTEM CHECK
+
+### [Prove the viewer and storage before blaming the real map](features/ae-system-check/README.md)
+
+**Status: 🟡 BUILT / SELF-TESTED — ARCGIS EARTH LIVE ACCEPTANCE PENDING**
+
+AE SYSTEM CHECK is a tiny synthetic TPKX intended to live on every prepared SD card beside the real operational maps.
+
+```text
+Z16 RED
+→ Z17 BLUE
+→ Z18 GREEN
+→ Z19 ORANGE
+→ Z20 PURPLE
+```
+
+Every tile identifies its level, row/column, XYZ address, and boundaries, with crosshairs and fine patterns that make unexpected blur or resampling visible.
+
+Candidate v0.1.0 is a mathematically clean nested ladder:
+
+```text
+1 + 4 + 16 + 64 + 256 = 341 tiles
+```
+
+All 341 PNG tile byte hashes were verified identical between the source MBTiles and the finished Compact Cache V2 bundles.
+
+The candidate does **not** become LIVE-PROVEN until ArcGIS Earth opens it and produces the expected level-color sequence on the real target.
+
+Recommended habit:
+
+> **Open SYSTEM CHECK first. Make the gear prove itself. Then open the mission map.**
+
+---
+
 ## Why this repository exists
 
 The target field user should not need to understand QGIS, projections, tile-pyramid internals, converter mechanics, or the history of every engineering branch.
@@ -214,6 +249,7 @@ Keep these states separate:
 | QR → ArcGIS Earth API actions | 🟡 **DESIGNED / NOT YET LIVE-PROVEN** |
 | QR → Windows destructive actions | 🟡 **DESIGNED / NOT YET LIVE-PROVEN** |
 | Wildland Imagery University | 🟡 **TRAINING CONCEPT / PROJECT-DEVELOPED MATERIAL** |
+| AE SYSTEM CHECK v0.1.0 | 🟡 **BUILT / SELF-TESTED — LIVE ACCEPTANCE PENDING** |
 
 The real target decides acceptance.
 
@@ -233,6 +269,7 @@ The real target decides acceptance.
 - No operational dependence on public Internet for the prepared map itself.
 - Do not make ordinary users learn the Factory.
 - Local files outrank streaming when the same useful imagery can already be on the device.
+- Keep a known-good diagnostic TPKX on the card and prove the viewer/storage path before blaming an operational map.
 - Do not add GIS or live-control features merely because they are technically possible.
 - QR command inputs must remain explicit allowlisted data, never arbitrary executable text.
 - Imagery training must reinforce fieldcraft, not substitute for current conditions or qualified judgment.
@@ -244,4 +281,4 @@ The real target decides acceptance.
 
 # The simple version
 
-> **Prepared geography. Own position. Live field units. Deliberate commands. Better terrain judgment. Go to work.**
+> **Prepared geography. Prove the gear. Own position. Live field units. Deliberate commands. Better terrain judgment. Go to work.**
