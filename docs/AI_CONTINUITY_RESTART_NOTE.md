@@ -4,7 +4,7 @@
 
 This repository is the **deployment-to-the-user end** of the four-project family.
 
-Its job is not to manufacture maps. Its job is to make finished map products and proven ArcGIS Earth field features usable without dragging the operator through the engineering stack.
+Its job is not to manufacture maps. Its job is to make finished map products and proven ArcGIS Earth / Windows field features usable without dragging the operator through the engineering stack.
 
 ## Current deployment doctrine
 
@@ -52,6 +52,35 @@ PRAVE Live              → remote PRAVE units
 
 The deeper parser/API engineering record remains in Offline GeoStack.
 
+### QR Command Bridge — optical dispatch / command input
+
+Authoritative feature home:
+
+`features/qr-command-bridge/`
+
+Current evidence boundary:
+
+- camera QR decode: **LIVE-PROVEN lineage**;
+- MacroDroid SMS JSON → QR: **LIVE-PROVEN lineage**;
+- coordinate/message parser: **LIVE-PROVEN lineage**;
+- `GMDS_CMD:TEST` + unknown-command blocking: **LIVE-PROVEN command proof**;
+- ArcGIS Earth API commands triggered by QR: **DESIGNED / NOT YET LIVE-PROVEN**;
+- Windows restart/shutdown/helper actions: **DESIGNED / NOT YET LIVE-PROVEN**.
+
+Hard security rule:
+
+> **QR text is data, never executable code.**
+
+The modern branch must preserve explicit hard-coded action names / allowlists. Never pass QR text directly to `cmd.exe`, PowerShell, Python `eval`, shell execution, or another generic command interpreter.
+
+Destructive actions require an additional confirmation/interlock before they are accepted as a field feature.
+
+The exact historical QR package identities and hashes are preserved in:
+
+`features/qr-command-bridge/EVIDENCE_AND_LINEAGE.md`
+
+Do not claim historical command-card ideas were implemented merely because they were documented.
+
 ## Current map-card plan
 
 Do not freeze exact capacity tiers until real Factory sizes are measured.
@@ -71,9 +100,10 @@ Current menu direction:
 - Esri documentation supports Field Maps Android TPKX basemaps on device/microSD: DOCUMENTED BY VENDOR.
 - This project's own Field Maps + microSD TPKX test: PENDING LIVE TEST.
 - PRAVE → ArcGIS Earth Automation API live display: LIVE-PROVEN.
+- QR Gold optical receiver / TEST allowlist lineage: LIVE-PROVEN as recorded above.
 - Field Maps Android app-level Wi-Fi-only cellular block: documented by Esri Support.
 
-Do not silently promote vendor documentation or self-tests into this project's LIVE-PROVEN status.
+Do not silently promote vendor documentation, self-tests, or design notes into this project's LIVE-PROVEN status.
 
 ## Field Maps sideload path
 
@@ -105,6 +135,8 @@ For Field Maps:
 
 For PRAVE Live, preserve the proven path now; if it is later repackaged for normal users, automatic COM-port discovery should replace source editing.
 
+For QR Command Bridge, the operator sees a result or an approved named action—not a scripting language.
+
 Overlays, MMPKs, geofences, complex forms, and other GIS features are optional future branches only when a real field need appears.
 
 ## Relationship to sibling repositories
@@ -112,7 +144,7 @@ Overlays, MMPKs, geofences, complex forms, and other GIS features are optional f
 - Offline GeoStack — master map manufacturing and deeper integration engineering record.
 - Rasta Pyramid Factory — general high-resolution raster-pyramid manufacturing.
 - Map Fountain — proven router/network-storage experiments; parked from primary personal-phone deployment, possible future Starlink/NAS role.
-- This repo — final Android deployment plus user-facing ArcGIS Earth field features.
+- This repo — final Android deployment plus user-facing ArcGIS Earth / Windows field features.
 
 ## Do not regress
 
@@ -122,17 +154,20 @@ Overlays, MMPKs, geofences, complex forms, and other GIS features are optional f
 - Do not bury the one-page Field Maps procedure under advanced features.
 - Do not claim Field Maps live acceptance until the actual phone test passes.
 - Do not rewrite the preserved PRAVE Live proof ZIP by inertia.
+- Do not allow arbitrary executable text through QR.
+- Do not promote planned QR restart/shutdown/API actions before real target tests.
 - Do not distribute third-party imagery without respecting its terms.
 
 ## Cold-start reading order
 
 1. `README.md`
 2. `features/prave-live/README.md` when PRAVE/remote-unit display matters
-3. `FIELD_MAPS_SD_CARD_QUICK_GUIDE.md`
-4. `ROADMAP.md`
-5. this file
-6. the current Offline GeoStack README
-7. sibling project READMEs only when deeper manufacturing/history is needed
+3. `features/qr-command-bridge/README.md` and `EVIDENCE_AND_LINEAGE.md` when QR matters
+4. `FIELD_MAPS_SD_CARD_QUICK_GUIDE.md`
+5. `ROADMAP.md`
+6. this file
+7. the current Offline GeoStack README
+8. sibling project READMEs only when deeper manufacturing/history is needed
 
 ## Governing principle
 
