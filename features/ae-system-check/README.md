@@ -2,7 +2,7 @@
 
 ## A synthetic TPKX that tells you whether the map gear is behaving
 
-**Current status: BUILT / SELF-TESTED — ARCGIS EARTH LIVE ACCEPTANCE PENDING**
+**Current status: ✅ LIVE-PROVEN — WINDOWS ARCGIS EARTH**
 
 This is a deliberately artificial ArcGIS Earth diagnostic map intended to ride on the same SD card as the real field maps.
 
@@ -11,6 +11,42 @@ Its first job is simple:
 > **Before blaming the imagery, prove the viewer, storage, package, and zoom ladder are working correctly.**
 
 The map contains no operational geography and is marked **TEST ONLY — NOT NAVIGATION**.
+
+---
+
+## Live acceptance — 2026-08-18
+
+The exact v0.1.0 binary was opened on the real Windows ArcGIS Earth target.
+
+The operator verified that **every intended level, Z16 through Z20, rendered correctly**.
+
+Observed ladder:
+
+```text
+Z16 = RED      PASS
+Z17 = BLUE     PASS
+Z18 = GREEN    PASS
+Z19 = ORANGE   PASS
+Z20 = PURPLE   PASS
+```
+
+The Z16 parent rendered as the intended single red calibration panel. At the opposite end of the ladder, Z20 rendered the expected 16 × 16 purple child grid with ordered row/column identities visible across the screen. The operator subsequently confirmed the intermediate Z17, Z18, and Z19 levels also work.
+
+This promotes the exact Windows ArcGIS Earth specimen from **BUILT / SELF-TESTED** to **LIVE-PROVEN**.
+
+Separate deployment gates remain separate: ArcGIS Earth Mobile, microSD behavior, and network-hosted use can be tested with this same specimen without changing the Windows evidence state.
+
+---
+
+## Exact accepted package
+
+```text
+AE_SYSTEM_CHECK_v0_1_0.tpkx
+4,196,743 bytes
+SHA-256 7843afedb94fdc3654be9eadd1c8d18d14bd2c70abd3d5a1d88f5278c1776390
+```
+
+**Freeze rule:** do not silently rebuild a different file under this version name. The accepted hash above is the v0.1.0 Windows LIVE-PROVEN specimen.
 
 ---
 
@@ -45,7 +81,7 @@ If the display changes from green to orange, there is no argument about which so
 
 ## Mathematical layout
 
-The candidate v0.1.0 package uses exactly **one complete Web Mercator Z16 tile** as its footprint in synthetic test space near 30°N, 80°W.
+v0.1.0 uses exactly **one complete Web Mercator Z16 tile** as its footprint in synthetic test space near 30°N, 80°W.
 
 That one tile subdivides cleanly through Z20:
 
@@ -61,7 +97,7 @@ TOTAL 341 tiles
 
 This is intentional. There are no guessed partial-parent relationships in the calibration ladder.
 
-Candidate bounds:
+Bounds:
 
 ```text
 West  -80.002441406250
@@ -74,23 +110,9 @@ The location is synthetic display space, not an operational destination.
 
 ---
 
-## Candidate package identity
+## Internal self-test
 
-```text
-AE_SYSTEM_CHECK_v0_1_0.tpkx
-4,196,743 bytes
-SHA-256 7843afedb94fdc3654be9eadd1c8d18d14bd2c70abd3d5a1d88f5278c1776390
-```
-
-The exact candidate is being held at **BUILT / SELF-TESTED** until it is opened on the real ArcGIS Earth target.
-
-After live acceptance, freeze and publish this exact package rather than silently rebuilding a different file under the same name.
-
----
-
-## Internal self-test result
-
-The candidate was manufactured as raster MBTiles, then converted with the project's proven raster MBTiles → Esri Compact Cache V2 / TPKX converter.
+The specimen was manufactured as raster MBTiles, then converted with the project's proven raster MBTiles → Esri Compact Cache V2 / TPKX converter.
 
 Self-test verified:
 
@@ -104,9 +126,7 @@ Self-test verified:
 - exact non-zero bundle-index counts for all five levels;
 - **all 341 PNG tile byte hashes matched between the MBTiles source and the finished Compact Cache V2 bundles**.
 
-That last test proves the calibration artwork survived the package bridge byte-for-byte.
-
-It does **not** prove ArcGIS Earth behavior. The real viewer gets that vote.
+The self-test proved the calibration artwork survived the package bridge byte-for-byte. The live Windows run then proved ArcGIS Earth actually consumed and rendered that ladder correctly.
 
 ---
 
@@ -132,21 +152,21 @@ Suggested operator check:
 6. Check that tile rows/columns are present, ordered, and not blank.
 7. Look at borders, rings, fine bars, and checker patterns for unexpected blur/resampling.
 8. Pan across tile boundaries.
-9. If the diagnostic map behaves normally but a real imagery package does not, investigate the imagery/package instead of the device first.
+9. If SYSTEM CHECK behaves normally but a real imagery package does not, investigate the imagery/package before blaming the device.
 
 The same specimen is intended for comparison across:
 
-- ArcGIS Earth Windows;
-- ArcGIS Earth Mobile;
+- ArcGIS Earth Windows — **LIVE-PROVEN**;
+- ArcGIS Earth Mobile — separate acceptance pending;
 - internal storage;
-- microSD / removable storage;
+- microSD / removable storage — separate acceptance pending;
 - network-hosted TPKX when that path is being tested.
 
 ---
 
 ## What it can diagnose
 
-This map is intended to make several otherwise subtle behaviors obvious:
+This map is designed to make otherwise subtle behavior obvious:
 
 - level-of-detail transitions;
 - parent/child substitution;
@@ -176,18 +196,6 @@ The larger engineering pattern is recorded in Offline GeoStack's **The Bridges W
 
 ---
 
-## Acceptance gate
+# Acceptance statement
 
-Promotion requires a real ArcGIS Earth run confirming at minimum:
-
-- package opens;
-- Z16 renders;
-- deliberate zoom produces the intended level-color sequence;
-- all visible tiles appear in the correct row/column relationship;
-- no unexplained blank areas or gross addressing errors;
-- Z20 detail renders;
-- reopen behavior is acceptable for the intended deployment.
-
-Until then:
-
-**BUILT / SELF-TESTED — LIVE ACCEPTANCE PENDING.**
+**AE SYSTEM CHECK v0.1.0 is LIVE-PROVEN on Windows ArcGIS Earth for the complete Z16–Z20 synthetic calibration ladder.**
