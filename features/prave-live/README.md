@@ -86,7 +86,7 @@ Run_AE_PRAVE_SELF_TEST.bat
 
 The original README was written before the physical ArcGIS Earth acceptance run, so it still calls the combined live path a TEST awaiting acceptance. The later real-target test passed; the implementation path is now LIVE-PROVEN. The original package is preserved rather than rewritten after the fact.
 
-The extracted files are also published individually in this folder for inspection.
+The original `README.txt` and BAT launchers are also visible in this folder for quick inspection. The authoritative Python source remains inside the preserved ZIP so the evidence package stays exact.
 
 ## Original package assumptions
 
@@ -103,13 +103,14 @@ The serial path requires `pyserial`.
 
 ## ArcGIS Earth setup
 
-1. Open ArcGIS Earth.
-2. Open **Settings**.
-3. Open **Advanced application settings**.
-4. Enable **Automation API**.
-5. Leave ArcGIS Earth running.
-6. Run `Run_AE_PRAVE_SELF_TEST.bat` if desired.
-7. Run `Run_AE_PRAVE_LIVE_v0_1_0_TEST.bat` for the live serial path.
+1. Download and extract the preserved ZIP.
+2. Open ArcGIS Earth.
+3. Open **Settings**.
+4. Open **Advanced application settings**.
+5. Enable **Automation API**.
+6. Leave ArcGIS Earth running.
+7. Run `Run_AE_PRAVE_SELF_TEST.bat` if desired.
+8. Run `Run_AE_PRAVE_LIVE_v0_1_0_TEST.bat` for the live serial path.
 
 ## RSSI icon family
 
@@ -145,7 +146,7 @@ ArcGIS Earth        → one operational view
 
 That separation is intentional. The map remains available offline whether PRAVE is running or not, and PRAVE does not need to become a GIS renderer.
 
-For the deeper engineering record, see the Offline GeoStack documentation for **PRAVE → ArcGIS Earth Integration**.
+For the deeper engineering record, see **[PRAVE → ArcGIS Earth Integration](https://github.com/Jim-dc95811/Offline-GeoStack/blob/main/docs/PRAVE_ARCGIS_EARTH_INTEGRATION.md)** in Offline GeoStack.
 
 ---
 
