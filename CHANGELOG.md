@@ -1,5 +1,17 @@
 # Android Field Maps + ArcGIS Earth — Changelog
 
+## 2026-08-18 — AE SYSTEM CHECK v0.1.0 LIVE-PROVEN on Windows ArcGIS Earth
+
+- Opened the exact `AE_SYSTEM_CHECK_v0_1_0.tpkx` specimen on the real Windows ArcGIS Earth target.
+- Operator verified **all intended levels Z16, Z17, Z18, Z19, and Z20 render correctly**.
+- Z16 displayed the expected single red parent calibration tile.
+- Z20 displayed the expected purple 16 × 16 child grid with ordered row/column identities visible across the screen.
+- Intermediate blue Z17, green Z18, and orange Z19 levels were also directly observed and confirmed working.
+- Exact accepted binary remains 4,196,743 bytes with SHA-256 `7843afedb94fdc3654be9eadd1c8d18d14bd2c70abd3d5a1d88f5278c1776390`.
+- Promoted Windows ArcGIS Earth evidence state to **LIVE-PROVEN — Z16–Z20**.
+- Mobile, microSD, and network-hosted behavior remain separate acceptance paths; no evidence was silently inherited from the Windows pass.
+- Accepted binary, self-test, and live-proof screenshots were preserved in the persistent Library under `/AE SYSTEM CHECK/`.
+
 ## 2026-08-18 — AE SYSTEM CHECK v0.1.0 built
 
 - Added **AE SYSTEM CHECK** as a proposed standard diagnostic TPKX for prepared SD cards.
@@ -10,8 +22,7 @@
 - Converted the source MBTiles with the project's proven MBTiles → TPKX / Compact Cache V2 converter.
 - Self-test verified TPKX ZIP integrity, required metadata, five represented Compact V2 bundles, exact non-zero index counts, and byte-for-byte SHA-256 equality of all 341 PNG tiles between source MBTiles and finished Compact Cache V2 bundles.
 - Candidate identity: `AE_SYSTEM_CHECK_v0_1_0.tpkx`, 4,196,743 bytes, SHA-256 `7843afedb94fdc3654be9eadd1c8d18d14bd2c70abd3d5a1d88f5278c1776390`.
-- Evidence state remains **BUILT / SELF-TESTED — ARCGIS EARTH LIVE ACCEPTANCE PENDING**.
-- Do not freeze/publish a different binary under this version name after live acceptance; preserve the accepted exact package.
+- Initial evidence state was **BUILT / SELF-TESTED — ARCGIS EARTH LIVE ACCEPTANCE PENDING**.
 
 ## 2026-08-18 — Wildland Imagery University added as training branch
 
