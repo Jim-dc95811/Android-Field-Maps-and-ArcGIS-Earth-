@@ -1,5 +1,18 @@
 # Android Field Maps + ArcGIS Earth — Changelog
 
+## 2026-08-18 — AE SYSTEM CHECK v0.1.0 built
+
+- Added **AE SYSTEM CHECK** as a proposed standard diagnostic TPKX for prepared SD cards.
+- Built a mathematically exact one-Z16-tile synthetic footprint near 30°N / 80°W with a nested Z16–Z20 ladder.
+- Level identity is intentionally unmistakable: Z16 red, Z17 blue, Z18 green, Z19 orange, Z20 purple.
+- Tile counts are exact: 1 / 4 / 16 / 64 / 256 = 341 total tiles.
+- Every tile carries deliberate boundaries, row/column identity, XYZ address, crosshairs/rings, and high-frequency patterns for blur/resampling inspection.
+- Converted the source MBTiles with the project's proven MBTiles → TPKX / Compact Cache V2 converter.
+- Self-test verified TPKX ZIP integrity, required metadata, five represented Compact V2 bundles, exact non-zero index counts, and byte-for-byte SHA-256 equality of all 341 PNG tiles between source MBTiles and finished Compact Cache V2 bundles.
+- Candidate identity: `AE_SYSTEM_CHECK_v0_1_0.tpkx`, 4,196,743 bytes, SHA-256 `7843afedb94fdc3654be9eadd1c8d18d14bd2c70abd3d5a1d88f5278c1776390`.
+- Evidence state remains **BUILT / SELF-TESTED — ARCGIS EARTH LIVE ACCEPTANCE PENDING**.
+- Do not freeze/publish a different binary under this version name after live acceptance; preserve the accepted exact package.
+
 ## 2026-08-18 — Wildland Imagery University added as training branch
 
 - Recovered the earlier **Wildland Imagery University** concept from the project Library and promoted it into the public deployment-to-the-user story.
