@@ -4,9 +4,9 @@
 
 **This repository is the deployment-to-the-user end of the four-project family.**
 
-It owns the simple human-facing workflows: prepared local maps on Android, plus optional Windows ArcGIS Earth features such as PRAVE Live and QR Command Bridge.
+It owns the simple human-facing workflows: prepared local maps on Android, optional Windows ArcGIS Earth features such as PRAVE Live and QR Command Bridge, and imagery-based terrain training.
 
-**Keywords:** ArcGIS Field Maps, ArcGIS Earth, offline Android maps, TPKX, microSD, offline field mapping, GNSS, PRAVE, QR code, QR Command Bridge, MacroDroid, dispatch mapping, Windows field computer, cellular-data protection, offline GIS
+**Keywords:** ArcGIS Field Maps, ArcGIS Earth, offline Android maps, TPKX, microSD, offline field mapping, GNSS, PRAVE, QR code, QR Command Bridge, MacroDroid, dispatch mapping, Windows field computer, cellular-data protection, offline GIS, wildland fire, terrain training, aerial imagery, topographic training
 
 **[Download the one-page printable Field Maps Offline TPKX Quick Guide](Field_Maps_Offline_TPKX_Quick_Guide.pdf)**
 
@@ -149,6 +149,37 @@ The QR branch also preserves:
 
 ---
 
+## User feature 4 — Wildland Imagery University
+
+### [Teaching terrain judgment before the emergency](training/WILDLAND_IMAGERY_UNIVERSITY.md)
+
+**Status: 🟡 TRAINING CONCEPT / PROJECT-DEVELOPED MATERIAL**
+
+This branch addresses the problem that software cannot solve by itself:
+
+> **Give firefighters the imagery, then teach them what it means.**
+
+The model is:
+
+```text
+SEE
+→ recognize terrain / access / human patterns
+
+THINK
+→ understand why an experienced firefighter cares
+
+DECIDE
+→ make a better-informed choice before committing resources
+```
+
+Topics include strategic-to-detail viewing elevation, road-versus-trail interpretation, turnarounds, bridges, gates, swamps, clearcuts, drainage, shadows, seasonal change, human geometry, hybrid imagery, and the habit of zooming out for context and back in for confirmation.
+
+The training page explicitly treats imagery as a tool—not the final authority—and preserves fieldcraft, local knowledge, agency policy, reconnaissance, and qualified on-scene judgment as primary.
+
+The long-term idea is to capture experienced-firefighter reasoning from real imagery and teach it forward.
+
+---
+
 ## Why this repository exists
 
 The target field user should not need to understand QGIS, projections, tile-pyramid internals, converter mechanics, or the history of every engineering branch.
@@ -162,6 +193,10 @@ Manufactures, verifies, refreshes, and prepares the map products and optional fi
 ### Field user
 
 Receives prepared geography and short instructions. Optional live features are added only when the field role actually benefits.
+
+### Experienced trainer
+
+Turns imagery into judgment by explaining what matters, what can mislead, and what must still be verified on the ground.
 
 ---
 
@@ -178,6 +213,7 @@ Keep these states separate:
 | `GMDS_CMD:TEST` allowlist proof | ✅ **LIVE-PROVEN command proof** |
 | QR → ArcGIS Earth API actions | 🟡 **DESIGNED / NOT YET LIVE-PROVEN** |
 | QR → Windows destructive actions | 🟡 **DESIGNED / NOT YET LIVE-PROVEN** |
+| Wildland Imagery University | 🟡 **TRAINING CONCEPT / PROJECT-DEVELOPED MATERIAL** |
 
 The real target decides acceptance.
 
@@ -185,10 +221,10 @@ The real target decides acceptance.
 
 ## Four-project family
 
-1. **[Offline GeoStack](https://github.com/Jim-dc95811/Offline-GeoStack)** — master map manufacturing + field-system integration.
+1. **[Offline GeoStack](https://github.com/Jim-dc95811/Offline-GeoStack)** — master map manufacturing + field-system integration. Its [Journey of Ideas](https://github.com/Jim-dc95811/Offline-GeoStack/blob/main/docs/JOURNEY_OF_IDEAS.md) and [Bridges We Had to Build](https://github.com/Jim-dc95811/Offline-GeoStack/blob/main/docs/THE_BRIDGES_WE_HAD_TO_BUILD.md) pages tell the larger story.
 2. **[Rasta Pyramid Factory](https://github.com/Jim-dc95811/Rasta-Pyramid-Factory)** — giant-raster / deep-zoom pyramid manufacturing.
 3. **[Map Fountain](https://github.com/Jim-dc95811/Map-Fountain)** — LIVE-PROVEN shared-storage/network delivery evidence; currently parked from the normal personal-phone path.
-4. **Android Field Maps + ArcGIS Earth** — deployment to the user: Android offline maps + Windows ArcGIS Earth field features.
+4. **Android Field Maps + ArcGIS Earth** — deployment to the user: Android offline maps + Windows ArcGIS Earth field features + imagery training.
 
 ---
 
@@ -199,6 +235,7 @@ The real target decides acceptance.
 - Local files outrank streaming when the same useful imagery can already be on the device.
 - Do not add GIS or live-control features merely because they are technically possible.
 - QR command inputs must remain explicit allowlisted data, never arbitrary executable text.
+- Imagery training must reinforce fieldcraft, not substitute for current conditions or qualified judgment.
 - Preserve exact package/source/zoom/build identities so deployments can be reproduced.
 - Respect third-party imagery, basemap, attribution, caching, export, and redistribution terms.
 - The real target application decides acceptance.
@@ -207,4 +244,4 @@ The real target decides acceptance.
 
 # The simple version
 
-> **Prepared geography. Own position. Live field units and deliberate commands when needed. Go to work.**
+> **Prepared geography. Own position. Live field units. Deliberate commands. Better terrain judgment. Go to work.**
