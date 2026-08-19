@@ -14,7 +14,7 @@ phone / printed QR
 → ArcGIS Earth action or approved Windows action
 ```
 
-The original QR receiver lineage was developed against Google Earth Pro. The proven camera, JSON, coordinate, message, and command-recognition work is preserved here. The modern direction is to keep that optical front end and route approved actions into ArcGIS Earth Automation API or explicitly coded Windows functions.
+The original QR receiver lineage was developed against Google Earth Pro. The proven camera, JSON, coordinate, message, and command-recognition work is carried forward. The modern direction is to keep that optical front end and route approved actions into ArcGIS Earth Automation API or explicitly coded Windows functions.
 
 ---
 
@@ -104,42 +104,13 @@ That separation was deliberate and should not be collapsed without a new reason 
 
 ---
 
-## Preserved Gold packages
+## Preserved evidence
 
-The original artifacts are preserved under [`packages/`](packages/):
+The exact Gold package identities, byte sizes, SHA-256 hashes, version boundaries, MacroDroid configuration record, and command-proof history are recorded here:
 
-- [`GMDS_QR_Receiver_v1_0_Gold_Application.zip`](packages/GMDS_QR_Receiver_v1_0_Gold_Application.zip) — original Gold camera / message / coordinate receiver.
-- [`GMDS_QR_Receiver_v1_0_1_Gold_Hotfix_Tester.zip`](packages/GMDS_QR_Receiver_v1_0_1_Gold_Hotfix_Tester.zip) — first live-test hardening: PIN DROPPED panel, stronger acknowledgement, exposure controls, bright-screen improvements.
-- [`GMDS_QR_Receiver_v1_1_0_Gold_Command_Proof_Tester.zip`](packages/GMDS_QR_Receiver_v1_1_0_Gold_Command_Proof_Tester.zip) — strict command-token and allowlist proof.
+**[Evidence and Lineage](EVIDENCE_AND_LINEAGE.md)**
 
-SHA-256:
-
-```text
-v1.0 Gold Application
-b2d75d2434149935ec4713dc7ba4b10cd0c25629c2a27040c7e53967797f7be5
-
-v1.0.1 Gold Hotfix Tester
-adc9b466ae204ffba186ab81d2512be1f3926262bbca1111fd8493519ef9ebe0
-
-v1.1.0 Gold Command Proof Tester
-c7659e4ca603ab750276e3d92aacc8b435c8ced51f3a7e85727f7abe9e353a61
-```
-
----
-
-## MacroDroid configuration archive
-
-The original phone-side configuration record is preserved under [`evidence/`](evidence/):
-
-- [`GMDS_MacroDroid_QR_Bridge_Configuration_Archive_2026-07-26.pdf`](evidence/GMDS_MacroDroid_QR_Bridge_Configuration_Archive_2026-07-26.pdf)
-
-SHA-256:
-
-```text
-1b16597ea5ae2c5803e7e232d8b5a1d4321acedfc5e0d1916a8069b53185800e
-```
-
-That archive records the three MacroDroid macros and the phone-as-optical-courier workflow.
+The canonical binary archives remain preserved in the project archive rather than being reconstructed or altered for this page.
 
 ---
 
