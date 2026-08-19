@@ -1,6 +1,6 @@
 # Android Field Maps + ArcGIS Earth
 
-## Offline maps on personal Android phones
+## Offline maps + ArcGIS Earth field features
 
 **This repository is where the other three projects get deployed to normal field users.**
 
@@ -9,42 +9,68 @@
 The manufacturing side can be complicated. The operator side should not be.
 
 ```text
-Offline GeoStack / TPKX Map Factory
+Offline Map Factory
         ↓
 finished TPKX maps
         ↓
-microSD card
-        ↓
-Android phone
+microSD / local storage
         ↓
 ArcGIS Field Maps or ArcGIS Earth
         ↓
-local imagery + GPS with no cellular basemap requirement
+local geography + field position
 ```
 
 The practical goal is simple:
 
-> **Put the maps on the card before you need them. Turn map-app cellular data off. The imagery is already in your pocket.**
+> **Put the maps where the user needs them before showtime, then add only the live field features that earn their place.**
+
+---
+
+## User features
+
+### Offline TPKX on Android
+
+Prepared TPKX maps can be carried on local phone storage / microSD for ArcGIS Field Maps and ArcGIS Earth Mobile.
+
+- ArcGIS Earth Mobile local TPKX: **LIVE-PROVEN on multiple project packages**.
+- ArcGIS Field Maps TPKX on microSD: **DOCUMENTED BY VENDOR / PROJECT LIVE TEST PENDING**.
+- Personal-data protection: set Field Maps to **Wi-Fi only** at the Android app level.
+
+### [PRAVE Live — remote units in ArcGIS Earth](features/prave-live/README.md)
+
+**LIVE-PROVEN.** On Windows ArcGIS Earth, PRAVE Live takes the established `$PRAVE` radio position reports and places remote units directly into ArcGIS Earth through the local Automation API.
+
+```text
+PRAVE radio reports
+→ serial input
+→ PRAVE Live
+→ ArcGIS Earth
+→ labeled remote units + RSSI fire-truck icons
+```
+
+ArcGIS Earth native GNSS continues to own the operator's own-position blue dot. PRAVE Live owns the remote units.
+
+The preserved original package is published in the feature folder.
 
 ---
 
 ## Why this project exists
 
-Many field users already have ArcGIS Field Maps on personal Android phones but use only a small part of its capability. They do not want to become GIS technicians, install QGIS, learn projections, or manufacture their own tile pyramids.
+Many field users already have ArcGIS Field Maps or ArcGIS Earth but use only a small part of their capability. They do not want to become GIS technicians, install QGIS, learn projections, or manufacture their own tile pyramids.
 
-They want to look down at the woods and roads from an aerial perspective, see where they are, and have the screen keep working when cellular service is weak, absent, expensive, or simply turned off.
+They want to look down at useful geography, see where they are, and have the screen keep working when cellular service is weak, absent, expensive, or simply turned off.
+
+This repository also owns optional user-facing ArcGIS Earth features such as PRAVE Live when they have passed real-target testing.
 
 This project deliberately separates the roles:
 
 ### Map maker
 
-Uses the Factory and GIS tools to manufacture, verify, refresh, and load map products.
+Uses Offline Map Factory and GIS tools to manufacture, verify, refresh, and load map products.
 
 ### Field user
 
-Gets a prepared microSD card and a one-page cheat sheet.
-
-That is the deployment model.
+Gets prepared geography and a short procedure. Optional live features are added only when the field role needs them.
 
 ---
 
@@ -117,9 +143,9 @@ This lets normal phone service remain available while the map app is prevented f
 
 ---
 
-## The field handoff
+## The Field Maps handoff
 
-For a normal user, the intended procedure is deliberately short:
+For a normal Field Maps user, the intended procedure is deliberately short:
 
 ```text
 1. Get a prepared card.
@@ -139,7 +165,7 @@ For a normal user, the intended procedure is deliberately short:
 
 ### [Offline GeoStack](https://github.com/Jim-dc95811/Offline-GeoStack)
 
-Master field-mapping and TPKX manufacturing project. QGIS manufactures raster MBTiles; the proven converter packages those tiles into native TPKX.
+Master field-mapping and map-manufacturing project. QGIS manufactures raster MBTiles; the proven converter packages those tiles into native TPKX. It also retains the deeper engineering record for PRAVE → ArcGIS Earth integration.
 
 ### [Rasta Pyramid Factory](https://github.com/Jim-dc95811/Rasta-Pyramid-Factory)
 
@@ -153,7 +179,7 @@ Proved that ArcGIS Earth on Windows can open a production-scale native TPKX dire
 
 **Deployment to the human.**
 
-The other projects make and prove the machinery. This one keeps the final user experience simple.
+The other projects make and prove the machinery. This one presents the finished user workflows and live ArcGIS Earth features.
 
 ---
 
@@ -161,10 +187,10 @@ The other projects make and prove the machinery. This one keeps the final user e
 
 - No operational dependence on public Internet for the map itself.
 - Do not make ordinary users learn the Factory.
-- Local files outrank streaming when the same useful imagery can already be on the phone.
-- Do not fill cards with features merely because GIS software supports them.
-- Add overlays or GIS extras only when real field users demonstrate a need.
-- Preserve exact map/source/zoom/build information so card contents can be reproduced and refreshed.
+- Local files outrank streaming when the same useful imagery can already be on the device.
+- Do not fill cards or screens with features merely because GIS software supports them.
+- Add live overlays or GIS extras only when real field users demonstrate a need.
+- Preserve exact source/zoom/build and feature-package information so deployments can be reproduced.
 - Respect all third-party imagery, basemap, attribution, caching, export, and redistribution terms.
 - The real target application decides acceptance.
 
@@ -172,6 +198,6 @@ The other projects make and prove the machinery. This one keeps the final user e
 
 # The simple version
 
-> **Call Gaddy for a card. Read the cheat sheet. Go to work.**
+> **Prepared geography. Own position. Live field units when needed. Go to work.**
 
 If you want to know how the maps are manufactured, follow the links above and have a drink from the firehose.
