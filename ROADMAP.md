@@ -2,7 +2,7 @@
 
 ## Current mission
 
-Deploy finished local map products and proven ArcGIS Earth field features to the user with the least possible operator complexity.
+Deploy finished local map products and proven ArcGIS Earth / Windows field features to the user with the least possible operator complexity.
 
 For personal Android maps, the preferred path is **local removable storage**, not a field server.
 
@@ -23,17 +23,42 @@ PRAVE radio reports
 → remote units on the map
 ```
 
-## Current proven user feature
+For optical dispatch / command input:
+
+```text
+phone / QR card
+→ QR Command Bridge
+→ strict parser / allowlist
+→ approved ArcGIS Earth or Windows action
+```
+
+## Current user features
 
 ### PRAVE Live
 
 **Status: LIVE-PROVEN.**
 
-The preserved original v0.1.0 package now lives under `features/prave-live/` in this repository.
+The preserved original v0.1.0 package lives under `features/prave-live/`.
 
 Do not rewrite that evidence package. Future usability improvements, such as automatic COM-port discovery or cleaner novice packaging, should be treated as a new controlled version and must earn their own live acceptance.
 
-## Immediate acceptance gates
+### QR Command Bridge
+
+**Status: LIVE-PROVEN FOUNDATION / COMMAND EXPANSION DESIGNED.**
+
+The recovered Gold lineage proves camera QR decode, MacroDroid SMS JSON, coordinate/message parsing, `GMDS_CMD:TEST`, and blocking of unknown command tokens.
+
+The modern branch must keep the hard-coded allowlist rule. QR payload text must never become generic shell or script input.
+
+Next controlled QR gates:
+
+1. build a modern ArcGIS Earth action using the existing command-token front end;
+2. prove it against the ArcGIS Earth local Automation API;
+3. add Windows/helper actions one at a time only when useful;
+4. require an additional confirmation/interlock for destructive actions such as restart/shutdown/reset;
+5. promote each action only after real-target testing.
+
+## Immediate map acceptance gates
 
 ### 1. Measure real card payloads
 
@@ -81,7 +106,7 @@ Smaller cards get the highest-value coverage first. Larger cards get broader cov
 
 ## User-experience rule
 
-Do not turn this into GIS training.
+Do not turn this into GIS or computer-administration training.
 
 The desired handoff is:
 
@@ -96,7 +121,9 @@ Only after real users ask for them:
 - local MMPK reference packages;
 - Rasta deep-zoom reference imagery;
 - improved card inventory/version labeling;
-- a novice-friendly successor to PRAVE Live v0.1.0 with automatic serial-port discovery.
+- a novice-friendly successor to PRAVE Live v0.1.0 with automatic serial-port discovery;
+- additional individually allowlisted QR actions;
+- a two-way response-QR / optical-bus branch after the one-way command path is mature.
 
 Do not add features because they are technically possible. Add them because the field user actually benefits.
 
