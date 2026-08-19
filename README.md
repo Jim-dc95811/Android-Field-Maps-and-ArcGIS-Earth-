@@ -185,7 +185,7 @@ The long-term idea is to capture experienced-firefighter reasoning from real ima
 
 ### [Prove the viewer and storage before blaming the real map](features/ae-system-check/README.md)
 
-**Status: 🟡 BUILT / SELF-TESTED — ARCGIS EARTH LIVE ACCEPTANCE PENDING**
+**Status: ✅ LIVE-PROVEN — WINDOWS ARCGIS EARTH**
 
 AE SYSTEM CHECK is a tiny synthetic TPKX intended to live on every prepared SD card beside the real operational maps.
 
@@ -199,7 +199,7 @@ Z16 RED
 
 Every tile identifies its level, row/column, XYZ address, and boundaries, with crosshairs and fine patterns that make unexpected blur or resampling visible.
 
-Candidate v0.1.0 is a mathematically clean nested ladder:
+v0.1.0 is a mathematically clean nested ladder:
 
 ```text
 1 + 4 + 16 + 64 + 256 = 341 tiles
@@ -207,11 +207,21 @@ Candidate v0.1.0 is a mathematically clean nested ladder:
 
 All 341 PNG tile byte hashes were verified identical between the source MBTiles and the finished Compact Cache V2 bundles.
 
-The candidate does **not** become LIVE-PROVEN until ArcGIS Earth opens it and produces the expected level-color sequence on the real target.
+On 2026-08-18, the exact package was opened on the real Windows ArcGIS Earth target. The operator verified **all five intended levels, Z16 through Z20, render correctly**. Z16 displayed the single red parent panel and Z20 displayed the ordered 16 × 16 purple child grid; the intermediate blue, green, and orange levels also passed.
+
+Exact accepted binary:
+
+```text
+AE_SYSTEM_CHECK_v0_1_0.tpkx
+4,196,743 bytes
+SHA-256 7843afedb94fdc3654be9eadd1c8d18d14bd2c70abd3d5a1d88f5278c1776390
+```
 
 Recommended habit:
 
 > **Open SYSTEM CHECK first. Make the gear prove itself. Then open the mission map.**
+
+Windows ArcGIS Earth is LIVE-PROVEN. Mobile/microSD/network-hosted use remain separate acceptance paths for the same specimen.
 
 ---
 
@@ -249,7 +259,8 @@ Keep these states separate:
 | QR → ArcGIS Earth API actions | 🟡 **DESIGNED / NOT YET LIVE-PROVEN** |
 | QR → Windows destructive actions | 🟡 **DESIGNED / NOT YET LIVE-PROVEN** |
 | Wildland Imagery University | 🟡 **TRAINING CONCEPT / PROJECT-DEVELOPED MATERIAL** |
-| AE SYSTEM CHECK v0.1.0 | 🟡 **BUILT / SELF-TESTED — LIVE ACCEPTANCE PENDING** |
+| AE SYSTEM CHECK v0.1.0 — Windows ArcGIS Earth | ✅ **LIVE-PROVEN Z16–Z20** |
+| AE SYSTEM CHECK — mobile/microSD/network paths | 🟡 **SEPARATE ACCEPTANCE PENDING** |
 
 The real target decides acceptance.
 
