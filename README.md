@@ -1,146 +1,61 @@
 # Android Field Maps + ArcGIS Earth
 
-## Offline maps + ArcGIS Earth field features
+## Android offline maps + Windows ArcGIS Earth field features
 
-**This repository is where the other three projects get deployed to normal field users.**
+**This repository is the deployment-to-the-user end of the four-project family.**
+
+It owns the simple human-facing workflows: prepared local maps on Android, plus optional Windows ArcGIS Earth features such as PRAVE Live and QR Command Bridge.
+
+**Keywords:** ArcGIS Field Maps, ArcGIS Earth, offline Android maps, TPKX, microSD, offline field mapping, GNSS, PRAVE, QR code, QR Command Bridge, MacroDroid, dispatch mapping, Windows field computer, cellular-data protection, offline GIS
 
 **[Download the one-page printable Field Maps Offline TPKX Quick Guide](Field_Maps_Offline_TPKX_Quick_Guide.pdf)**
 
-The manufacturing side can be complicated. The operator side should not be.
+> **The manufacturing side can be complicated. The operator side should not be.**
+
+---
+
+## User feature 1 — Offline TPKX maps on Android
 
 ```text
 Offline Map Factory
-        ↓
-finished TPKX maps
-        ↓
-microSD / local storage
-        ↓
-ArcGIS Field Maps or ArcGIS Earth
-        ↓
-local geography + field position
+→ finished TPKX
+→ microSD / local storage
+→ Android
+→ ArcGIS Field Maps or ArcGIS Earth Mobile
+→ local imagery + own position
 ```
 
-The practical goal is simple:
+Current evidence state:
 
-> **Put the maps where the user needs them before showtime, then add only the live field features that earn their place.**
+- ArcGIS Earth Mobile local TPKX: ✅ **LIVE-PROVEN on multiple project packages**.
+- ArcGIS Field Maps TPKX on microSD: 🟡 **DOCUMENTED BY VENDOR / PROJECT LIVE TEST PENDING**.
+- Android app-level Wi-Fi-only setting: used to protect personal cellular data from map-app consumption.
 
----
+Current card-planning direction:
 
-## User features
+- District — Z17
+- County — Z18
+- State Forests / selected high-value areas — Z20
+- Google Hybrid and Esri imagery/labels where useful and capacity permits
+- optional Rasta deep-zoom products where spare capacity is useful
 
-### Offline TPKX on Android
+Do not freeze card tiers from theory. Real finished byte counts decide the menu.
 
-Prepared TPKX maps can be carried on local phone storage / microSD for ArcGIS Field Maps and ArcGIS Earth Mobile.
+### Field Maps basemap path
 
-- ArcGIS Earth Mobile local TPKX: **LIVE-PROVEN on multiple project packages**.
-- ArcGIS Field Maps TPKX on microSD: **DOCUMENTED BY VENDOR / PROJECT LIVE TEST PENDING**.
-- Personal-data protection: set Field Maps to **Wi-Fi only** at the Android app level.
-
-### [PRAVE Live — remote units in ArcGIS Earth](features/prave-live/README.md)
-
-**LIVE-PROVEN.** On Windows ArcGIS Earth, PRAVE Live takes the established `$PRAVE` radio position reports and places remote units directly into ArcGIS Earth through the local Automation API.
-
-```text
-PRAVE radio reports
-→ serial input
-→ PRAVE Live
-→ ArcGIS Earth
-→ labeled remote units + RSSI fire-truck icons
-```
-
-ArcGIS Earth native GNSS continues to own the operator's own-position blue dot. PRAVE Live owns the remote units.
-
-The preserved original package is published in the feature folder.
-
-### [QR Command Bridge — optical dispatch + approved commands](features/qr-command-bridge/README.md)
-
-**LIVE-PROVEN FOUNDATION / COMMAND EXPANSION DESIGNED.** The QR branch uses a phone screen or printed QR as a deliberately narrow optical input to the Windows field computer.
-
-```text
-phone / QR card
-→ Windows camera
-→ QR decoder
-→ strict parser / hard-coded allowlist
-→ dispatch result or approved local action
-```
-
-The Gold lineage already proved camera decode, MacroDroid SMS JSON, coordinate parsing, normal message display, `GMDS_CMD:TEST`, and blocking of unknown command tokens.
-
-The modern ArcGIS Earth API and Windows command actions are the next branch. They remain **DESIGNED until individually implemented and live-tested**.
-
-Hard rule: **QR text is data, never executable shell text.**
-
----
-
-## Why this project exists
-
-Many field users already have ArcGIS Field Maps or ArcGIS Earth but use only a small part of their capability. They do not want to become GIS technicians, install QGIS, learn projections, or manufacture their own tile pyramids.
-
-They want to look down at useful geography, see where they are, and have the screen keep working when cellular service is weak, absent, expensive, or simply turned off.
-
-This repository also owns optional user-facing ArcGIS Earth / Windows features such as PRAVE Live and QR Command Bridge when they belong at the deployment-to-the-human end of the system.
-
-This project deliberately separates the roles:
-
-### Map maker
-
-Uses Offline Map Factory and GIS tools to manufacture, verify, refresh, and load map products.
-
-### Field user
-
-Gets prepared geography and a short procedure. Optional live features are added only when the field role needs them.
-
----
-
-## Current map-card concept
-
-The exact sizes are being measured with real Factory builds before capacity tiers are frozen.
-
-Current menu direction:
-
-- **District — Z17**: broad everyday operating-area imagery.
-- **County — Z18**: wider-area coverage with more detail.
-- **State Forests / selected high-value areas — Z20**: maximum local detail where it matters most.
-- **Google Hybrid and Esri imagery/labels**: both are useful choices when card capacity allows.
-- **Rasta Pyramid Factory products**: optional deep-zoom imagery or other large single-raster pyramids can use spare card capacity.
-
-Do not guess storage requirements from theory alone. Finished byte counts from real builds decide the card menu.
-
----
-
-## ArcGIS Field Maps — documented Android TPKX path
-
-Esri documents direct sideloading of `.tpk`, `.tpkx`, `.vtpk`, and geospatial PDF basemaps to Android storage or a microSD card.
-
-Android basemap folder:
+Esri documents sideloaded basemaps under:
 
 ```text
 \Android\data\com.esri.fieldmaps\files\basemaps
 ```
 
-Official references:
+Supported documented types include TPK / TPKX / VTPK and geospatial PDF.
 
-- [ArcGIS Field Maps — Configure the mobile app / Copy a basemap](https://doc.arcgis.com/en/field-maps/android/use-maps/configure-field-maps.htm)
-- [ArcGIS Field Maps — Download maps](https://doc.arcgis.com/en/field-maps/android/use-maps/download-maps.htm)
-- [Esri Support — Sideload MMPKs and basemaps using Android / microSD](https://support.esri.com/en-us/knowledge-base/sideload-mobile-map-packages-mmpks-and-basemaps-to-arcg-000026920)
+### Protect the personal cellular plan
 
-### Evidence status
+The Field Maps in-app Cellular Data option is not treated as a total app-level block. For a full practical block on Android, set **ArcGIS Field Maps → Wi-Fi only** in the phone’s app network settings.
 
-- Esri documentation for Android/microSD TPKX sideloading: **DOCUMENTED BY VENDOR**.
-- This project's own TPKX → ArcGIS Field Maps Android acceptance run: **PENDING LIVE TEST**.
-- Local TPKX → ArcGIS Earth Mobile: **LIVE-PROVEN on multiple project packages**.
-
-Do not promote the Field Maps path to LIVE-PROVEN until the real phone test passes.
-
----
-
-## Protect the personal cellular data plan
-
-The point is not merely that a local map *can* work offline. The user should be able to prevent Field Maps from silently using a personal cellular data plan for imagery and other network activity.
-
-Esri states that the **Cellular Data** setting inside Field Maps does not block every cellular-data use by the app. To block Field Maps cellular traffic entirely on Android, use the phone's app-level network setting and set ArcGIS Field Maps to **Wi-Fi only**.
-
-Typical Samsung/Android path:
+Typical Samsung path:
 
 ```text
 Settings
@@ -151,19 +66,9 @@ Settings
 → Wi-Fi only
 ```
 
-Menu names vary by manufacturer/version.
+Menu names vary by Android manufacturer/version.
 
-Official Esri support record:
-
-- [BUG-000164200 — Field Maps cellular-data behavior and Android Wi-Fi-only workaround](https://support.esri.com/en-us/bug/turning-off-the-cellular-data-option-in-the-arcgis-fiel-bug-000164200)
-
-This lets normal phone service remain available while the map app is prevented from consuming the user's cellular data plan.
-
----
-
-## The Field Maps handoff
-
-For a normal Field Maps user, the intended procedure is deliberately short:
+### Normal Field Maps handoff
 
 ```text
 1. Get a prepared card.
@@ -179,38 +84,123 @@ For a normal Field Maps user, the intended procedure is deliberately short:
 
 ---
 
-## Relationship to the other projects
+## User feature 2 — PRAVE Live
 
-### [Offline GeoStack](https://github.com/Jim-dc95811/Offline-GeoStack)
+### [Remote radio units in Windows ArcGIS Earth](features/prave-live/README.md)
 
-Master field-mapping and map-manufacturing project. QGIS manufactures raster MBTiles; the proven converter packages those tiles into native TPKX. It also retains the deeper engineering record for PRAVE → ArcGIS Earth integration.
+**Status: ✅ LIVE-PROVEN**
 
-### [Rasta Pyramid Factory](https://github.com/Jim-dc95811/Rasta-Pyramid-Factory)
+```text
+PRAVE radio reports
+→ Windows serial input
+→ PRAVE Live
+→ ArcGIS Earth local Automation API
+→ labeled remote units + RSSI fire-truck icons
+```
 
-Turns giant flat images and georeferenced rasters into smooth multiscale pyramids. It can provide useful reference imagery and deep-zoom visual material in addition to ordinary map products.
+Role separation is intentional:
 
-### [Map Fountain](https://github.com/Jim-dc95811/Map-Fountain)
+```text
+ArcGIS Earth native GNSS → ME / own-position blue dot
+PRAVE Live              → remote PRAVE units
+```
 
-Proved that ArcGIS Earth on Windows can open a production-scale native TPKX directly from router-attached storage over SMB/Wi-Fi, and separately proved router-only Static REST WMTS delivery to ArcGIS Earth Mobile. It is now **proven engineering reference / parked from the primary personal-phone deployment path**. It may return as a Starlink-connected basecamp storage/NAS package.
+The exact original live-proven package is preserved in the feature folder.
 
-### This repository
+The deeper parser/API engineering record remains in Offline GeoStack.
 
-**Deployment to the human.**
+---
 
-The other projects make and prove the machinery. This one presents the finished user workflows and live ArcGIS Earth / Windows features.
+## User feature 3 — QR Command Bridge
+
+### [Optical dispatch + approved local commands](features/qr-command-bridge/README.md)
+
+**Status: ✅ LIVE-PROVEN FOUNDATION / 🟡 COMMAND EXPANSION DESIGNED**
+
+```text
+phone / printed QR
+→ Windows camera
+→ QR decoder
+→ strict parser / hard-coded allowlist
+→ dispatch result or approved local action
+```
+
+The Gold QR lineage already proved:
+
+- camera QR decoding;
+- MacroDroid SMS → clipboard JSON → QR;
+- coordinate parsing and pin-drop behavior in the original Google Earth path;
+- ordinary message display;
+- strict `GMDS_CMD:<TOKEN>` recognition;
+- `GMDS_CMD:TEST`;
+- unknown-command blocking.
+
+Hard rule:
+
+> **QR text is data, never executable shell text.**
+
+ArcGIS Earth API actions and Windows restart/shutdown/helper-process actions remain **DESIGNED until individually implemented and live-tested**.
+
+The QR branch also preserves:
+
+- the [Android Phone FireTextSender origin story](features/qr-command-bridge/origins/fire-text-sender/README.md);
+- the [URL QR Maker v0.1.0](features/qr-command-bridge/tools/url-qr-maker/README.md) for local/offline QR creation;
+- exact Gold package identities/hashes in the [Evidence and Lineage](features/qr-command-bridge/EVIDENCE_AND_LINEAGE.md) record.
+
+---
+
+## Why this repository exists
+
+The target field user should not need to understand QGIS, projections, tile-pyramid internals, converter mechanics, or the history of every engineering branch.
+
+This project separates the roles:
+
+### Map maker / system builder
+
+Manufactures, verifies, refreshes, and prepares the map products and optional field tools.
+
+### Field user
+
+Receives prepared geography and short instructions. Optional live features are added only when the field role actually benefits.
+
+---
+
+## Evidence discipline
+
+Keep these states separate:
+
+| Capability | Status |
+| --- | --- |
+| ArcGIS Earth Mobile local TPKX | ✅ **LIVE-PROVEN** |
+| ArcGIS Field Maps TPKX on microSD | 🟡 **VENDOR-DOCUMENTED / PROJECT LIVE TEST PENDING** |
+| PRAVE Live → ArcGIS Earth | ✅ **LIVE-PROVEN** |
+| QR camera / SMS JSON / coordinate lineage | ✅ **LIVE-PROVEN lineage** |
+| `GMDS_CMD:TEST` allowlist proof | ✅ **LIVE-PROVEN command proof** |
+| QR → ArcGIS Earth API actions | 🟡 **DESIGNED / NOT YET LIVE-PROVEN** |
+| QR → Windows destructive actions | 🟡 **DESIGNED / NOT YET LIVE-PROVEN** |
+
+The real target decides acceptance.
+
+---
+
+## Four-project family
+
+1. **[Offline GeoStack](https://github.com/Jim-dc95811/Offline-GeoStack)** — master map manufacturing + field-system integration.
+2. **[Rasta Pyramid Factory](https://github.com/Jim-dc95811/Rasta-Pyramid-Factory)** — giant-raster / deep-zoom pyramid manufacturing.
+3. **[Map Fountain](https://github.com/Jim-dc95811/Map-Fountain)** — LIVE-PROVEN shared-storage/network delivery evidence; currently parked from the normal personal-phone path.
+4. **Android Field Maps + ArcGIS Earth** — deployment to the user: Android offline maps + Windows ArcGIS Earth field features.
 
 ---
 
 ## Governing rules
 
-- No operational dependence on public Internet for the map itself.
+- No operational dependence on public Internet for the prepared map itself.
 - Do not make ordinary users learn the Factory.
 - Local files outrank streaming when the same useful imagery can already be on the device.
-- Do not fill cards or screens with features merely because GIS software supports them.
-- Add live overlays or GIS extras only when real field users demonstrate a need.
+- Do not add GIS or live-control features merely because they are technically possible.
 - QR command inputs must remain explicit allowlisted data, never arbitrary executable text.
-- Preserve exact source/zoom/build and feature-package information so deployments can be reproduced.
-- Respect all third-party imagery, basemap, attribution, caching, export, and redistribution terms.
+- Preserve exact package/source/zoom/build identities so deployments can be reproduced.
+- Respect third-party imagery, basemap, attribution, caching, export, and redistribution terms.
 - The real target application decides acceptance.
 
 ---
@@ -218,5 +208,3 @@ The other projects make and prove the machinery. This one presents the finished 
 # The simple version
 
 > **Prepared geography. Own position. Live field units and deliberate commands when needed. Go to work.**
-
-If you want to know how the maps are manufactured, follow the links above and have a drink from the firehose.
