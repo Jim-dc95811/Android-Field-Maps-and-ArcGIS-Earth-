@@ -1,5 +1,17 @@
 # Android Field Maps + ArcGIS Earth — Changelog
 
+## 2026-08-18 — Wildland Imagery University added as training branch
+
+- Recovered the earlier **Wildland Imagery University** concept from the project Library and promoted it into the public deployment-to-the-user story.
+- Added `training/WILDLAND_IMAGERY_UNIVERSITY.md`.
+- Preserved the core training model: **SEE → THINK → DECIDE**.
+- Preserved the principle: **Maps tell you where things should be. Experience tells you what they are really like.**
+- Added project-developed strategic / operational / tactical / detail viewing-elevation heuristics with an explicit warning that they are training heuristics, not agency doctrine.
+- Added imagery-reading topics including road-versus-trail interpretation, turnarounds, gates, bridges, swamps, clearcuts, seasonal change, shadows, human geometry, and hybrid imagery cross-checking.
+- Added the long-term teaching model: real imagery → student questions → experienced-firefighter reasoning → annotated lesson → teach the judgment forward.
+- Explicitly kept fieldcraft, agency policy, current conditions, reconnaissance, road verification, and qualified on-scene judgment above remote imagery.
+- Linked the training branch into the repository front door and the larger Offline GeoStack **Journey of Ideas** / **Bridges We Had to Build** showcase.
+
 ## 2026-08-18 — QR Command Bridge expanded with origin + QR maker utility
 
 - Added **URL QR Maker v0.1.0** under `features/qr-command-bridge/tools/url-qr-maker/`.
