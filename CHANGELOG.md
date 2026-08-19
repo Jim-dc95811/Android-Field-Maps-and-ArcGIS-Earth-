@@ -1,5 +1,15 @@
 # Android Field Maps + ArcGIS Earth — Changelog
 
+## 2026-08-18 — QR Command Bridge expanded with origin + QR maker utility
+
+- Added **URL QR Maker v0.1.0** under `features/qr-command-bridge/tools/url-qr-maker/`.
+- Published its core Python source, BAT launcher, self-test record, and QR-library license.
+- Recorded the exact original portable archive identity: 128,299 bytes, SHA-256 `f2f31ee0e12502734f46a6671516f6ce093e7d2b5b41dbaeb17cab2db5f97033`.
+- Added **Android Phone FireTextSender** as the documented origin of the QR dispatch lineage.
+- Recorded the original FireTextSender archive identity: 3,375,142 bytes, SHA-256 `4a7990644f0da321f259e977ef16c7f20f45bb0ec2159df89afcb3abc541cf07`.
+- Preserved the historical relationship: Windows map coordinates → Android SMS bridge → later MacroDroid SMS capture → phone QR → Windows QR receiver.
+- Did not mirror the raw FireTextSender ZIP publicly because it contains deployment-specific phone numbers and machine paths; its exact original remains preserved in the canonical archive.
+
 ## 2026-08-18 — QR Command Bridge added as user feature
 
 - Added **QR Command Bridge** beside PRAVE Live as the optical dispatch / command-input branch.
