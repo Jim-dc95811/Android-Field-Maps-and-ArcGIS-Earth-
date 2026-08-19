@@ -2,16 +2,36 @@
 
 ## Current mission
 
-Deploy finished local map products from the other three projects onto normal Android phones with the least possible operator complexity.
+Deploy finished local map products and proven ArcGIS Earth field features to the user with the least possible operator complexity.
 
-The preferred personal-phone path is **local removable storage**, not a field server.
+For personal Android maps, the preferred path is **local removable storage**, not a field server.
 
 ```text
-Factory-built TPKX
+Offline Map Factory
+→ TPKX
 → microSD card
 → Android
 → Field Maps / ArcGIS Earth
 ```
+
+For optional Windows live positioning:
+
+```text
+PRAVE radio reports
+→ PRAVE Live
+→ ArcGIS Earth Automation API
+→ remote units on the map
+```
+
+## Current proven user feature
+
+### PRAVE Live
+
+**Status: LIVE-PROVEN.**
+
+The preserved original v0.1.0 package now lives under `features/prave-live/` in this repository.
+
+Do not rewrite that evidence package. Future usability improvements, such as automatic COM-port discovery or cleaner novice packaging, should be treated as a new controlled version and must earn their own live acceptance.
 
 ## Immediate acceptance gates
 
@@ -65,7 +85,7 @@ Do not turn this into GIS training.
 
 The desired handoff is:
 
-> Get a card → read one page → select the map → work.
+> Prepared map or proven feature → short instructions → work.
 
 ## Optional later additions
 
@@ -75,7 +95,8 @@ Only after real users ask for them:
 - additional TPKX themes;
 - local MMPK reference packages;
 - Rasta deep-zoom reference imagery;
-- improved card inventory/version labeling.
+- improved card inventory/version labeling;
+- a novice-friendly successor to PRAVE Live v0.1.0 with automatic serial-port discovery.
 
 Do not add features because they are technically possible. Add them because the field user actually benefits.
 
@@ -90,4 +111,4 @@ Possible future return: Starlink-connected basecamp storage / poor-man's NAS.
 
 ## Governing rule
 
-> **Have the data ready before the user asks the screen to move.**
+> **Have the data and the field capability ready before the user needs them.**
