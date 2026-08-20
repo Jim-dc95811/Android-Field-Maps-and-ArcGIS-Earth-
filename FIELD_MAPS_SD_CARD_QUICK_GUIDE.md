@@ -8,6 +8,26 @@
 
 Use a physical microSD formatted **exFAT**.
 
+### If Windows chimes but the card does not appear
+
+A healthy card may be detected by Windows without receiving a drive letter. This happened on the 128 GB gold-test card.
+
+Do **not** format or initialize a card that Disk Management already shows as a healthy exFAT partition.
+
+Use:
+
+```text
+Disk Management
+-> find the SD card's exFAT Healthy primary partition
+-> right-click the partition
+-> Change Drive Letter and Paths...
+-> Add
+-> accept an available drive letter
+-> OK
+```
+
+After the drive letter is assigned, the card should appear normally in File Explorer.
+
 Create these two directories on the card:
 
 ```text
