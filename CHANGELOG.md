@@ -1,5 +1,31 @@
 # Android Field Maps + ArcGIS Earth — Changelog
 
+## 2026-08-20 — ArcGIS Pro MMPK bridge proven; district physical-card gold test prepared
+
+- Installed and activated the ArcGIS Pro 3.7 trial.
+- Created a new basemap in ArcGIS Pro and added an existing project TPKX directly.
+- Used **Share -> Mobile Map -> Save package to file**.
+- Small specimen analyzer returned **0 errors / 0 warnings / 0 messages**.
+- ArcGIS Pro successfully produced `MMPK_SMALL_TEST.mmpk`.
+- Forensic inspection of the modern package showed:
+  - MMPK version 3.0;
+  - only seven outer files;
+  - original TPKX preserved intact under `commondata/new_tpkx/`;
+  - local `.mmap` / `.mapx` wiring with no HTTP/HTTPS references found in the small specimen.
+- The Pro-created MMPK opened and rendered successfully in Windows ArcGIS Earth while Earth showed **Not signed in**.
+- Repeated the same workflow with the district-wide Esri Hybrid Z17 TPKX, approximately 52 GB.
+- ArcGIS Pro successfully created the matching district-wide approximately 52 GB MMPK.
+- Current gold-card layout intentionally carries both:
+  - `Android\data\com.esri.fieldmaps\files\mappackages\DISTRICT.mmpk`;
+  - `Android\data\com.esri.fieldmaps\files\basemaps\DISTRICT.tpkx`.
+- Selected a physical 128 GB exFAT microSD. Windows reports approximately 119 GB usable.
+- The duplicate MMPK + TPKX payload is approximately 104 GB; redundancy is intentional and reliability outranks storage elegance.
+- The source MBTiles is not required on the field card.
+- First acceptance target is the Amazon Fire tablet for map-path behavior. GPS/own-position remains a later GPS-capable phone test.
+- Field Maps runtime status remains **VENDOR-DOCUMENTED / PROJECT LIVE TEST PENDING** until the Fire/phone passes.
+- Preserved the distinction between file validity and user authorization: Esri documents sideloaded MMPKs/basemaps without a separate file-activation step, but the desired disconnected Field Maps sign-in/runtime behavior still requires live proof.
+- Added `docs/FIELD_MAPS_MMPK_CARD_REFERENCE_2026-08-20.md` and updated the SD-card quick guide, README, and roadmap.
+
 ## 2026-08-18 — AE SYSTEM CHECK v0.1.0 LIVE-PROVEN on Windows ArcGIS Earth
 
 - Opened the exact `AE_SYSTEM_CHECK_v0_1_0.tpkx` specimen on the real Windows ArcGIS Earth target.
