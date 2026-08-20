@@ -40,6 +40,26 @@ The duplication is intentional.
 - first target: **Amazon Fire tablet** for map-path acceptance;
 - GPS/own-position acceptance remains a later test on a GPS-capable Android phone.
 
+## Windows card mount recovery
+
+The 128 GB gold-test card produced the Windows device-insert chime but initially did **not** appear in File Explorer. Disk Management showed the card as an **exFAT Healthy (Primary Partition)** with no usable drive letter.
+
+The successful recovery was:
+
+```text
+Disk Management
+-> find the SD card's exFAT Healthy primary partition
+-> right-click the partition
+-> Change Drive Letter and Paths...
+-> Add
+-> accept an available drive letter
+-> OK
+```
+
+After the drive letter was assigned, the card appeared normally in File Explorer.
+
+**Do not format or initialize a Healthy exFAT card merely because Windows failed to assign a drive letter automatically.**
+
 ## What ArcGIS Pro proved on 2026-08-20
 
 Minimal supported workflow:
