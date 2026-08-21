@@ -4,71 +4,130 @@
 
 > **Goal:** Stop rationing the map. Keep the district imagery on the card so Field Maps does not need to stream the heavy basemap over cellular service.
 
+## Current status — read this first
+
+The physical-card Field Maps path is now **LIVE-PROVEN**.
+
+Using the same Field Maps Designer map and same card folder:
+
+```text
+project historical converter TPKX -> REJECTED
+Esri official Usa.tpkx            -> ACCEPTED
+```
+
+So the current engineering problem is the project's TPKX converter output, not the SD-card directory.
+
+The next test is a small TPKX built with `ESRI_CANONICAL_TPKX_TEST_v0_2_0`. Do not regenerate the district-scale products until that tiny specimen passes Field Maps.
+
+See:
+
+- [Field Maps TPKX Conformance — 2026-08-20](docs/FIELD_MAPS_TPKX_CONFORMANCE_2026-08-20.md)
+
 ## 1. Prepare the card on a computer
 
 Use a physical microSD formatted **exFAT**.
 
+Create:
+
+```text
+\Android\data\com.esri.fieldmaps\files\basemaps
+```
+
+For MMPKs later, also create:
+
+```text
+\Android\data\com.esri.fieldmaps\files\mappackages
+```
+
 ### If Windows chimes but the card does not appear
 
-A healthy card may be detected by Windows without receiving a drive letter. This happened on the 128 GB gold-test card.
-
-Do **not** format or initialize a card that Disk Management already shows as a healthy exFAT partition.
+If Disk Management already shows the card as a healthy exFAT partition, do **not** format or initialize it just because no drive letter appears.
 
 Use:
 
 ```text
 Disk Management
 -> find the SD card's exFAT Healthy primary partition
--> right-click the partition
+-> right-click
 -> Change Drive Letter and Paths...
 -> Add
 -> accept an available drive letter
 -> OK
 ```
 
-After the drive letter is assigned, the card should appear normally in File Explorer.
+### Reader warning
 
-Create these two directories on the card:
+The laptop's built-in SD reader produced write-protection behavior on multiple cards/adapters. Another computer wrote successfully.
+
+Treat that reader as suspect. The card itself is disposable test media.
+
+## 2. Proven Field Maps basemap setup
+
+In Field Maps Designer:
+
+1. create/open the map;
+2. enable Offline;
+3. choose **File on the device** for the basemap;
+4. enter the **exact filename** that exists in the card `basemaps` folder;
+5. save;
+6. share the map as required.
+
+The project proved this workflow with `District 7 Local Basemap Test`, shared **Everyone (public)**.
+
+Esri's official `Usa.tpkx` worked from the physical card.
+
+## 3. Current canonical-converter test
+
+Run:
 
 ```text
-\Android\data\com.esri.fieldmaps\files\mappackages
+small MBTiles
+-> ESRI_CANONICAL_TPKX_TEST_v0_2_0
+-> small new TPKX
 ```
+
+Copy that output to:
 
 ```text
-\Android\data\com.esri.fieldmaps\files\basemaps
+\Android\data\com.esri.fieldmaps\files\basemaps\
 ```
 
-Copy the prepared files:
+Set Designer to the exact filename and open Field Maps.
+
+### Pass
+
+If Field Maps opens the new TPKX, the canonical converter design can replace the historical converter in production branches.
+
+### Fail
+
+Do not guess at one metadata field. Continue package-wide conformance analysis against Esri's working `Usa.tpkx`.
+
+## 4. District card after converter repair
+
+Once the corrected district TPKX exists, the intended card layout is:
 
 ```text
-mappackages\DISTRICT.mmpk
-basemaps\DISTRICT.tpkx
+\Android\data\com.esri.fieldmaps\files\mappackages\DISTRICT.mmpk
+\Android\data\com.esri.fieldmaps\files\basemaps\DISTRICT.tpkx
 ```
 
-The duplication is intentional for the current gold test.
+The duplication is intentional.
 
-- `DISTRICT.mmpk` = complete on-device Field Maps map.
-- `DISTRICT.tpkx` = separately available local basemap path / redundancy.
-- The source MBTiles file is not required on the field card.
+- MMPK = complete on-device Field Maps map.
+- TPKX = separate local basemap path / redundancy and direct ArcGIS Earth Mobile content.
+- Source MBTiles stays on the manufacturing side.
 
-Esri documents the MMPK folder as `mappackages` and sideloaded TPK/TPKX/VTPK basemaps under `basemaps`.
+## 5. Why the old district MMPK is held
 
-## 2. Insert the prepared card
+ArcGIS Pro 3.7 successfully created small and approximately 52 GB district MMPKs.
 
-1. Safely eject the card from Windows.
-2. Insert it into the Android device.
-3. Let Android mount the card.
-4. Open ArcGIS Field Maps.
-5. Go to **On Device**.
-6. Open the district MMPK if it appears.
+But Pro preserved the original TPKX intact inside the MMPK under `commondata/new_tpkx/`.
 
-For the current project, **Field Maps MMPK-on-microSD behavior is still awaiting live project acceptance**. Do not promote it until the real device passes.
+Therefore the MMPK does **not** repair the current TPKX conformance defect. Rebuild the district MMPK after the corrected TPKX is proven.
 
-## 3. Protect the personal cellular plan
+## 6. Protect the personal cellular plan
 
-The Field Maps in-app Cellular Data option is not treated as a complete app-level network block.
-
-Use the Android app-level network restriction and set **ArcGIS Field Maps = Wi-Fi only** where the phone supports that control.
+Use the Android app-level network restriction and set **ArcGIS Field Maps = Wi-Fi only** where the phone supports it.
 
 Typical Samsung path:
 
@@ -81,39 +140,21 @@ Settings
 -> Wi-Fi only
 ```
 
-Menu wording varies by Android manufacturer/version.
+Normal phone service can remain available for calls and texts while the heavy map stays local.
 
-Normal phone service can remain available for calls and texts while the local map stays on the card.
+## 7. Full gold offline proof — after corrected district package exists
 
-## 4. Gold offline proof
-
-1. Confirm the district MMPK appears under **On Device**.
-2. Open it and verify district-wide imagery/labels.
-3. Pan and zoom through the intended level, currently district Z17.
-4. Remove public Internet.
-5. Repeat pan/zoom.
-6. Close Field Maps completely.
-7. Reopen it while still disconnected.
-8. Confirm the district map remains available.
-
-After the map-path passes on the Fire test device, repeat on a GPS-capable personal Android phone and verify own-position behavior.
-
-## 5. Current Pro packaging result
-
-ArcGIS Pro 3.7 successfully created a modern minimal MMPK from an existing project TPKX.
-
-Observed small-package behavior:
-
-- analyzer: **0 errors / 0 warnings / 0 messages**;
-- MMPK version 3.0;
-- original TPKX preserved intact inside the MMPK;
-- no HTTP/HTTPS references found in the small specimen `.mmap` / `.mapx`;
-- Pro-created MMPK rendered in Windows ArcGIS Earth while Earth showed **Not signed in**;
-- district-scale approximately 52 GB MMPK also packaged successfully from the approximately 52 GB district TPKX.
-
-See the current engineering reference:
-
-- [Field Maps + ArcGIS Earth Mobile — District Map Card Reference](docs/FIELD_MAPS_MMPK_CARD_REFERENCE_2026-08-20.md)
+1. insert the prepared card;
+2. open Field Maps;
+3. verify the corrected district MMPK appears under **On Device**;
+4. open it and verify district imagery/labels;
+5. pan/zoom through Z17;
+6. remove public Internet;
+7. repeat pan/zoom;
+8. close Field Maps completely;
+9. reopen while still disconnected;
+10. verify the map remains available;
+11. later repeat on a GPS-capable personal Android phone and verify own position.
 
 ## Official Esri references
 
@@ -124,4 +165,4 @@ See the current engineering reference:
 
 ---
 
-**Field procedure:** prepared card in -> Field Maps On Device -> district MMPK -> Field Maps Wi-Fi only -> map keeps working without cellular basemap downloads.
+**Current field rule:** Esri's TPKX works from the card. Fix our package to conform, prove the tiny file, then scale back up.
