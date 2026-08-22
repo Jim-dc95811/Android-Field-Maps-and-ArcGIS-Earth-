@@ -1,5 +1,79 @@
 # Android Field Maps + ArcGIS Earth — Changelog
 
+## 2026-08-21 — production pivot to QGIS GeoTIFF -> ArcGIS Pro native TPKX
+
+Field Maps rejected the custom canonical v0.3.1 TPKX even after its local structural/tile audit passed.
+
+Target evidence now reads:
+
+```text
+historical project TPKX -> REJECTED
+canonical v0.3.1 TPKX  -> REJECTED
+Esri official Usa.tpkx  -> ACCEPTED
+```
+
+### Production decision
+
+The deployment branch no longer waits on the custom MBTiles -> TPKX converter.
+
+Current chain:
+
+```text
+QGIS / GeoTIFF Factory
+-> finished labeled GeoTIFF
+-> ArcGIS Pro Create Map Tile Package
+-> native TPKX
+-> physical card
+-> Field Maps
+```
+
+### Small GeoTIFF + ArcGIS Pro build proof
+
+QGIS produced a labeled hybrid GeoTIFF:
+
+```text
+37,767,543 bytes
+4096 x 3072 RGB
+EPSG:3857
+Z18 source detail
+```
+
+Critical live rule: Google Labels must render above ESRI Satellite.
+
+ArcGIS Pro then produced:
+
+```text
+tiff test 66.tpkx
+38,306,245 bytes
+Z0-Z18
+PNG24
+19 Compact Cache V2 bundles
+creator: CreateMapTilePackage ArcGIS Pro
+```
+
+The native-Pro TPKX build is proven; Field Maps runtime acceptance is pending.
+
+### GeoTIFF Factory
+
+Offline GeoStack created `GEOTIFF FACTORY 0.1.2 TEST` as a separate product with:
+
+- the established two-point extent workflow;
+- four controlled map sources;
+- Z16-Z20 source detail;
+- one `.tif` output;
+- no MBTiles;
+- no custom TPKX converter.
+
+Status: BUILT / BENCH-CHECKED — live Windows/QGIS test pending.
+
+### District 7
+
+A full District 7 Z17 Esri Satellite + Google Labels GeoTIFF build was started with map units per pixel `1.19432856685505`.
+
+Completion and final size remain pending.
+
+---
+
 ## 2026-08-20 — Field Maps physical-card path LIVE-PROVEN; project TPKX converter failure isolated
 
 A decisive control test was completed on the real Field Maps path.
