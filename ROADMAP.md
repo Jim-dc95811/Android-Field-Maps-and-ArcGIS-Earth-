@@ -4,143 +4,163 @@
 
 Deploy finished local map products and proven ArcGIS Earth / Windows field features to the user with the least possible operator complexity.
 
-For personal Android maps, the preferred path remains **prepared local removable storage**, not a field server.
+For personal Android maps, the preferred path remains prepared local removable storage, not a field server.
 
-The user value remains **cellular-data protection** and freedom from map rationing.
+The user value remains cellular-data protection and freedom from map rationing.
 
 ---
 
-## Immediate gate — small canonical TPKX in Field Maps
+## Immediate gate — native ArcGIS Pro TPKX in Field Maps
 
-A live control test changed the order of operations.
+The custom converter is no longer the deployment gate.
 
-Using the same physical microSD and Field Maps Designer workflow:
-
-- project historical converter TPKX -> **REJECTED**;
-- Esri official `Usa.tpkx` -> **ACCEPTED**.
-
-The physical `basemaps` path, Designer configuration, and public map are therefore proven good. The manufacturing converter is the current defect.
-
-### Next test
+Target evidence:
 
 ```text
-small MBTiles
--> ESRI_CANONICAL_TPKX_TEST_v0_2_0
--> small new TPKX
--> \Android\data\com.esri.fieldmaps\files\basemaps\
--> Designer exact filename
+historical project TPKX -> Field Maps REJECTED
+canonical v0.3.1 TPKX  -> Field Maps REJECTED
+Esri official Usa.tpkx  -> Field Maps ACCEPTED
+```
+
+Current manufacturing path:
+
+```text
+QGIS / GeoTIFF Factory
+-> finished GeoTIFF
+-> ArcGIS Pro Create Map Tile Package
+-> native TPKX
+-> physical card
 -> Field Maps
 ```
 
-Promote only after Field Maps opens that new specimen.
+### Next real acceptance
 
-- [Field Maps TPKX Conformance — 2026-08-20](docs/FIELD_MAPS_TPKX_CONFORMANCE_2026-08-20.md)
+1. finish the District 7 Z17 GeoTIFF;
+2. create the native Z0-Z17 TPKX in ArcGIS Pro;
+3. copy it to `\Android\data\com.esri.fieldmaps\files\basemaps\`;
+4. point Designer to the exact filename;
+5. open the map in Field Maps;
+6. record the real result.
 
----
-
-## After the small TPKX passes
-
-1. integrate the corrected converter into Offline GeoStack / Offline Map Factory;
-2. integrate the same corrected TPKX stage into Rasta;
-3. regenerate the District 7 Esri Hybrid Z17 TPKX;
-4. rebuild the MMPK from the corrected district TPKX;
-5. populate the physical card;
-6. run Field Maps cold/no-Internet district acceptance;
-7. repeat later on a GPS-capable personal Android phone;
-8. test the personal-cellular plan with Field Maps restricted to Wi-Fi only.
-
-Do not spend hours regenerating the approximately 52 GB district products before the tiny conformance gate passes.
+Do not make custom converter research block this sequence.
 
 ---
 
-## Intended gold-card architecture
+## District 7 current run
 
-After converter repair:
+Current source build:
 
 ```text
-corrected district TPKX
--> ArcGIS Pro minimal MMPK wrapper
--> physical microSD
-   +-- Field Maps mappackages\DISTRICT.mmpk
-   +-- Field Maps basemaps\DISTRICT.tpkx
--> Android
--> Field Maps + ArcGIS Earth Mobile
+Esri Satellite + Google Labels
+Z17
+map units per pixel = 1.19432856685505
 ```
 
-The duplication remains intentional. Reliability outranks storage elegance.
+Status: **LIVE BUILD STARTED — COMPLETION PENDING.**
+
+After completion, ArcGIS Pro should use:
+
+```text
+Tiling Format = PNG 24 bit
+Minimum LOD = 0
+Maximum LOD = 17
+Extent = GeoTIFF layer extent
+```
 
 ---
 
-## ArcGIS Pro packaging result
+## GeoTIFF Factory acceptance
 
-**PASS on both small and district-scale packages.**
+`GEOTIFF FACTORY 0.1.2 TEST` is built and bench-checked.
 
-ArcGIS Pro 3.7 created a modern minimal MMPK from an existing TPKX.
+Next live test should verify a small controlled extent on the real Windows/QGIS machine after the current large manual build finishes.
 
-Small specimen observations:
+Pass condition:
 
-- 0 analyzer errors / 0 warnings / 0 messages;
-- MMPK version 3.0;
-- original TPKX preserved intact inside the package;
-- no HTTP/HTTPS references found in the small `.mmap` or `.mapx`;
-- package rendered in Windows ArcGIS Earth while Earth showed Not signed in.
+- BAT launches;
+- QGIS 3.44.9 is found;
+- two-point extent works;
+- chosen Z16-Z20 resolution is correct;
+- selected source/layer stack is correct;
+- one finished GeoTIFF is produced;
+- hybrid labels are visible;
+- ArcGIS Pro accepts the TIFF normally.
 
-### Updated meaning
+---
 
-Because ArcGIS Pro preserves the TPKX intact, the approximately 52 GB MMPK built from the historical converter does not repair the Field Maps compatibility defect.
+## Native ArcGIS Pro small proof
 
-Hold the full MMPK acceptance test until the source TPKX is corrected.
+Already completed:
+
+```text
+QGIS GeoTIFF
+37,767,543 bytes
+4096 x 3072 RGB
+EPSG:3857
+Z18
+
+-> ArcGIS Pro
+
+tiff test 66.tpkx
+38,306,245 bytes
+Z0-Z18
+PNG24
+19 bundles
+```
+
+This proves the build path. It does not yet prove Field Maps runtime acceptance.
+
+---
+
+## Gold-card architecture if native TPKX passes
+
+```text
+ArcGIS Pro native district TPKX
+-> physical removable storage
+   +-- Field Maps basemaps\DISTRICT.tpkx
+-> Android
+-> Field Maps
+```
+
+MMPK remains optional deployment packaging rather than a repair mechanism. If it is used, build it only around the native/correct TPKX.
 
 ---
 
 ## Physical-card transport rule
 
-Earlier Fire testing proved ordinary ADB/MTP-style writes into another app's protected `Android/data` tree are blocked by Android scoped storage.
+Populate the removable storage on a computer while it is outside Android. Earlier Fire testing already proved ordinary protected-folder ADB/MTP injection is blocked by scoped storage.
 
-Do not resume that dead end. Populate the physical card on a computer while it is outside Android.
-
-### Reader note
-
-The laptop's built-in SD reader produced write-protection behavior on multiple cards/adapters; another computer wrote successfully. Treat the reader as suspect.
-
-The card is disposable test media.
+The laptop's built-in SD reader showed suspect write-protection behavior. Use another reader/computer when needed.
 
 ---
 
 ## ArcGIS Earth Mobile role
 
-ArcGIS Earth Mobile local project TPKX is already **LIVE-PROVEN on multiple packages**.
-
-Position it as the fast local map viewer:
+Local project TPKX remains **LIVE-PROVEN on multiple packages**.
 
 ```text
 Field Maps          -> agency workflow
 ArcGIS Earth Mobile -> fast direct local TPKX viewer
 ```
 
-The Field Maps strict-conformance failure does not erase Earth Mobile evidence.
-
 ---
 
-## Current user features
+## Custom converter disposition
 
-### PRAVE Live
+v0.3.1:
 
-**LIVE-PROVEN.** Preserve the original v0.1.0 evidence package.
+```text
+bench -> PASS
+Field Maps -> FAIL
+```
 
-### QR Command Bridge
+v0.3.2 exists as a bench-only PNG metadata experiment.
 
-**LIVE-PROVEN FOUNDATION / COMMAND EXPANSION DESIGNED.** Keep the hard-coded allowlist rule; QR text must never become generic shell/script input.
-
-### AE SYSTEM CHECK
-
-**LIVE-PROVEN on Windows ArcGIS Earth.** Mobile/Field Maps compatibility is a separate claim.
+Future converter research should compare against the real ArcGIS Pro-generated raster TPKX. Production should not wait for it.
 
 ---
 
 ## Card-menu direction
-
-After the package-conformance problem is solved, the user-facing card menu remains:
 
 - District — Z17
 - County — Z18
@@ -155,13 +175,13 @@ Real finished byte counts decide card tiers.
 
 Map Fountain remains **LIVE-PROVEN / PARKED** from the normal personal-phone path.
 
-A converter defect is not a reason to re-add network infrastructure. Reopen Map Fountain only for a genuine shared-storage use such as Starlink/basecamp NAS or multi-client map access.
+Do not re-add network infrastructure merely because the manufacturing branch changed.
 
 ---
 
 ## Governing rules
 
-> **Esri's working TPKX is the reference.**
+> **Use the native ArcGIS Pro package for the Field Maps production path.**
 
 > **Field Maps decides Field Maps compatibility.**
 
