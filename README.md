@@ -4,8 +4,6 @@
 
 **This repository is the deployment-to-the-user end of the four-project family.**
 
-> **The manufacturing side can be complicated. The operator side should not be.**
-
 > **Stop rationing the map. Keep cellular data for communication. Put the heavy district imagery on the card.**
 
 ---
@@ -16,112 +14,170 @@
 
 A Field Maps user must be able to open the app with **zero public Internet** and use a **district-wide Esri Hybrid map through Z17**. The same local imagery should prevent large basemap downloads when cellular service exists but the user does not want to burn data.
 
-The intended two-app model remains:
+Two-app model:
 
 ```text
 ArcGIS Field Maps   -> agency workflow / on-device map
 ArcGIS Earth Mobile -> fast direct local TPKX viewer
 ```
 
-ArcGIS Earth Mobile local TPKX is already **LIVE-PROVEN on multiple project packages**.
+ArcGIS Earth Mobile local project TPKX remains **LIVE-PROVEN on multiple packages**.
 
-### New decisive Field Maps result — 2026-08-20
+---
 
-The physical-card Field Maps path is now proven.
+## Current Field Maps manufacturing path — 2026-08-21
 
-Using the same microSD directory and same Field Maps Designer workflow:
+The custom MBTiles -> TPKX converter is no longer the Field Maps production gate.
+
+Strict target evidence:
 
 ```text
-project converter-built TPKX -> REJECTED
-Esri official Usa.tpkx       -> ACCEPTED
+historical project TPKX -> Field Maps REJECTED
+canonical v0.3.1 TPKX  -> Field Maps REJECTED
+Esri official Usa.tpkx  -> Field Maps ACCEPTED
 ```
 
-Field Maps found the project-built District 7 TPKX but rejected it as spatial-reference incompatible. Esri's official `Usa.tpkx` worked after Designer was pointed to that exact filename.
+The current production chain is now:
 
-That isolates the current defect to the project's historical MBTiles -> TPKX package construction.
+```text
+QGIS / GeoTIFF Factory
+-> finished labeled GeoTIFF
+-> ArcGIS Pro Create Map Tile Package
+-> native TPKX
+-> physical removable storage
+-> Field Maps
+```
 
-### LIVE-PROVEN Field Maps pieces
+This keeps the map rendering under QGIS and gives native TPKX package construction back to ArcGIS Pro.
+
+---
+
+## LIVE-PROVEN Field Maps pieces
 
 - `District 7 Local Basemap Test` created in Field Maps Designer;
 - Offline enabled;
 - **File on the device** selected;
 - map shared **Everyone (public)**;
-- physical-card path works:
+- physical-card basemap path works:
 
 ```text
 \Android\data\com.esri.fieldmaps\files\basemaps\
 ```
 
-- Esri official `Usa.tpkx` works in Field Maps.
+- Esri official `Usa.tpkx` works from that path.
+
+Field Maps is therefore the final acceptance test, not the manufacturing tool.
 
 See:
 
-- **[Field Maps TPKX Conformance — Live Test 2026-08-20](docs/FIELD_MAPS_TPKX_CONFORMANCE_2026-08-20.md)**
-- [Offline GeoStack TPKX engineering record](https://github.com/Jim-dc95811/Offline-GeoStack/blob/main/docs/TPKX_FIELD_MAPS_CONFORMANCE_2026-08-20.md)
+- [Field Maps TPKX Conformance](docs/FIELD_MAPS_TPKX_CONFORMANCE_2026-08-20.md)
+- [Offline GeoStack current status](https://github.com/Jim-dc95811/Offline-GeoStack/blob/main/docs/PROJECT_STATUS_2026-08-21.md)
+- [QGIS GeoTIFF workflow](https://github.com/Jim-dc95811/Offline-GeoStack/blob/main/docs/QGIS_GEOTIFF_SOURCE_WORKFLOW_2026-08-21.md)
+- [ArcGIS Pro native TPKX workflow](https://github.com/Jim-dc95811/Offline-GeoStack/blob/main/docs/ARCGIS_PRO_GEOTIFF_TO_TPKX_2026-08-21.md)
 
-### Immediate acceptance gate
+---
 
-The next test is intentionally small:
+## Small native ArcGIS Pro package — build proven
+
+A labeled QGIS GeoTIFF was successfully converted with ArcGIS Pro **Create Map Tile Package**.
 
 ```text
-small MBTiles
--> ESRI_CANONICAL_TPKX_TEST_v0_2_0
--> small new TPKX
--> physical microSD basemaps folder
+QGIS GeoTIFF
+37,767,543 bytes
+4096 x 3072 RGB
+EPSG:3857
+Z18 source detail
+
+-> ArcGIS Pro
+
+tiff test 66.tpkx
+38,306,245 bytes
+Z0-Z18
+PNG24
+19 bundles
+creator: CreateMapTilePackage ArcGIS Pro
+```
+
+The native Pro TPKX build is proven. Field Maps runtime acceptance of this native-Pro branch is still **PENDING** until the real app opens it.
+
+---
+
+## District 7 current branch
+
+A full District 7 Esri Satellite + Google Labels GeoTIFF build was started at:
+
+```text
+Z17
+map units per pixel = 1.19432856685505
+```
+
+Status: **LIVE BUILD STARTED — COMPLETION PENDING.**
+
+After it finishes:
+
+```text
+District 7 Z17 GeoTIFF
+-> ArcGIS Pro native Z0-Z17 TPKX
+-> physical card basemaps folder
 -> Designer exact filename
 -> Field Maps
 ```
 
-The canonical v0.2.0 test converter is **BUILT / SELF-TESTED**. Field Maps acceptance is pending.
+---
 
-If it passes, the corrected converter is integrated into the manufacturing projects, then the District 7 TPKX and MMPK are rebuilt.
+## GeoTIFF Factory
 
-### MMPK bridge — useful, but currently held behind TPKX repair
-
-ArcGIS Pro 3.7 successfully created a small modern MMPK and an approximately 52 GB district MMPK from existing project TPKX files.
-
-Observed small-package result:
-
-- 0 errors / 0 warnings / 0 messages;
-- MMPK version 3.0;
-- original TPKX preserved intact under `commondata/new_tpkx/`;
-- `.mmap` references the packaged local TPKX;
-- no HTTP/HTTPS references found in the small `.mmap` or `.mapx`;
-- package rendered in Windows ArcGIS Earth while Earth showed **Not signed in**.
-
-That proves the ArcGIS Pro packaging bridge. It also proves Pro is **not** a sanitizer: it preserves the source TPKX. Therefore the old district MMPK is not the next gold object until the underlying TPKX is corrected.
-
-### Intended gold-card architecture after repair
+Offline GeoStack has built a separate:
 
 ```text
-Prepared microSD (exFAT)
-|
-+-- Android\data\com.esri.fieldmaps\files\mappackages\
-|     corrected District 7 MMPK.mmpk
-|
-+-- Android\data\com.esri.fieldmaps\files\basemaps\
-      corrected District 7.tpkx
+GEOTIFF FACTORY 0.1.2 TEST
 ```
 
-The duplication remains intentional. Reliability outranks storage elegance.
+Its scope is intentionally simple:
 
-### Physical-card rule
+- standard two-point extent workflow;
+- four controlled map sources;
+- target detail Z16-Z20;
+- one finished GeoTIFF;
+- no MBTiles;
+- no custom TPKX converter.
+
+Status: **BUILT / BENCH-CHECKED — WINDOWS/QGIS LIVE TEST PENDING.**
+
+---
+
+## Physical-card rule
 
 Earlier Fire testing proved Android scoped storage blocks ordinary ADB/MTP-style injection into another app's protected `Android/data` directory.
 
-Populate the physical microSD on a computer while it is outside Android, then insert the completed card into the device.
+Populate the physical removable storage on a computer while it is outside Android, then insert the completed media into the device.
 
-### SD-reader note
+The laptop's built-in SD reader previously showed suspect write-protection behavior; another computer wrote successfully. Treat that reader as suspect, not the card as precious media.
 
-The laptop's built-in SD reader showed write-protection behavior with multiple cards/adapters. Another computer wrote successfully. Treat that reader as suspect.
+---
 
-The card itself is disposable test media; rewrite/reformat it whenever useful.
+## Cellular-data protection
 
-### Protect the personal cellular plan
+The user value is not merely offline operation. It is eliminating **map rationing**.
 
-The key selling point is not merely offline operation. It is eliminating **map rationing**.
+Where Android supports it, restrict ArcGIS Field Maps to Wi-Fi only at the app/network level while normal cellular service remains available for calls/texts and other communication.
 
-Where Android supports it, restrict ArcGIS Field Maps to Wi-Fi only at the app/network level while normal phone cellular service remains available for calls/texts and other communication.
+---
+
+## Custom converter disposition
+
+The custom converter is preserved as research/backlog for a possible future Pro-free workflow.
+
+v0.3.1:
+
+```text
+bench structural/tile tests -> PASS
+Field Maps -> FAIL
+```
+
+A v0.3.2 PNG-metadata experiment exists, but it is not the active production gate.
+
+A real ArcGIS Pro-generated raster TPKX is now the preferred future converter reference specimen.
 
 ---
 
@@ -175,7 +231,7 @@ SEE -> THINK -> DECIDE
 
 **Status: ✅ LIVE-PROVEN — WINDOWS ARCGIS EARTH**
 
-Exact accepted binary:
+Exact historical accepted binary:
 
 ```text
 AE_SYSTEM_CHECK_v0_1_0.tpkx
@@ -183,48 +239,40 @@ AE_SYSTEM_CHECK_v0_1_0.tpkx
 SHA-256 7843afedb94fdc3654be9eadd1c8d18d14bd2c70abd3d5a1d88f5278c1776390
 ```
 
+Field Maps compatibility is a separate claim.
+
 ---
 
 ## Evidence discipline
 
 | Capability | Status |
 | --- | --- |
-| Field Maps Designer + physical `basemaps` path | ✅ **LIVE-PROVEN** |
-| Esri official `Usa.tpkx` in Field Maps | ✅ **LIVE-PROVEN** |
-| Project historical converter TPKX in Field Maps | ❌ **FAILED / NEEDS REPAIR** |
-| Canonical converter v0.2.0 test | 🟡 **BUILT / SELF-TESTED — FIELD MAPS PENDING** |
-| ArcGIS Earth Mobile local project TPKX | ✅ **LIVE-PROVEN** |
-| ArcGIS Pro existing TPKX -> MMPK | ✅ **PASS** |
-| Corrected district MMPK cold-card test | 🟡 **PENDING CORRECTED TPKX** |
-| Fire scoped-storage ADB/MTP injection | ❌ **REJECTED / proven permission barrier** |
-| PRAVE Live -> ArcGIS Earth | ✅ **LIVE-PROVEN** |
-| QR camera / SMS JSON / coordinate lineage | ✅ **LIVE-PROVEN lineage** |
-| AE SYSTEM CHECK v0.1.0 — Windows Earth | ✅ **LIVE-PROVEN Z16-Z20** |
-
-The real target decides acceptance.
-
----
-
-## Four-project family
-
-1. **[Offline GeoStack](https://github.com/Jim-dc95811/Offline-GeoStack)** — master manufacturing/integration and current TPKX conformance repair.
-2. **[Rasta Pyramid Factory](https://github.com/Jim-dc95811/Rasta-Pyramid-Factory)** — giant-raster manufacturing; TPKX branch inherits the converter repair boundary.
-3. **[Map Fountain](https://github.com/Jim-dc95811/Map-Fountain)** — LIVE-PROVEN shared-storage/network reference; parked from normal personal-phone use.
-4. **Android Field Maps + ArcGIS Earth** — deployment to the user and the real Field Maps acceptance record.
+| Field Maps Designer + physical `basemaps` path | ✅ LIVE-PROVEN |
+| Esri official `Usa.tpkx` in Field Maps | ✅ LIVE-PROVEN |
+| Historical project converter TPKX in Field Maps | ❌ FAILED |
+| Canonical v0.3.1 converter TPKX in Field Maps | ❌ FAILED |
+| QGIS labeled GeoTIFF small build | ✅ LIVE-PROVEN |
+| ArcGIS Pro GeoTIFF -> native TPKX build | ✅ PASS |
+| Native ArcGIS Pro TPKX in Field Maps | 🟡 PENDING |
+| GeoTIFF Factory 0.1.2 TEST | 🟡 BUILT / BENCH-CHECKED |
+| District 7 Z17 GeoTIFF | 🟡 LIVE BUILD STARTED |
+| ArcGIS Earth Mobile local project TPKX | ✅ LIVE-PROVEN |
+| Fire scoped-storage ADB/MTP injection | ❌ REJECTED |
+| PRAVE Live -> ArcGIS Earth | ✅ LIVE-PROVEN |
+| AE SYSTEM CHECK v0.1.0 — Windows Earth | ✅ LIVE-PROVEN |
 
 ---
 
 ## Governing rules
 
 - No operational dependence on public Internet for the prepared map itself.
-- Do not make ordinary users learn the Factory.
-- Local files outrank streaming when the useful geography can live on the device.
+- Do not make ordinary users learn the manufacturing stack.
 - Reliability outranks storage elegance.
-- Esri's working TPKX is the reference implementation.
+- Use the native vendor packaging path for production when available.
 - Field Maps decides Field Maps compatibility.
 
 ---
 
 # The simple version
 
-> **Field Maps for workflow. ArcGIS Earth Mobile for fast local maps. Fix the package once, then put the district imagery on the card.**
+> **QGIS makes the map image. ArcGIS Pro makes the native TPKX. Put it on the card and let Field Maps vote.**
