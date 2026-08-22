@@ -1,108 +1,162 @@
-# ArcGIS Field Maps TPKX Conformance — Live Test 2026-08-20
+# ArcGIS Field Maps TPKX Conformance — Live Record 2026-08-20 to 2026-08-21
 
-## Decisive result
+## Proven physical-card workflow
 
-The physical-card / Field Maps workflow is now proven. The current failure is isolated to the project's historical MBTiles -> TPKX converter output.
-
-Control test:
+The Field Maps deployment path itself is proven:
 
 ```text
 same Android device
-same physical microSD
+same physical removable storage
 same Field Maps Designer map
 same basemaps directory
-same general Web Mercator map setup
+```
 
-project converter TPKX -> REJECTED
+Known result:
+
+```text
 Esri official Usa.tpkx -> ACCEPTED
 ```
 
-Field Maps found the project-built TPKX but reported that the spatial reference of the file was not compatible with the map.
+Field Maps Designer state proved:
 
-After `Usa.tpkx`, Esri's own official TPKX specimen, was copied to the same folder and Designer was changed to reference that filename, Field Maps accepted it.
-
-## LIVE-PROVEN tonight
-
-- `District 7 Local Basemap Test` exists in Field Maps Designer.
-- Offline is enabled.
-- Basemap is configured as **File on the device**.
-- The map is shared **Everyone (public)**.
-- Physical microSD basemap path works:
+- `District 7 Local Basemap Test` exists;
+- Offline enabled;
+- **File on the device** selected;
+- map shared **Everyone (public)**;
+- physical-card path works:
 
 ```text
 \Android\data\com.esri.fieldmaps\files\basemaps\
 ```
 
-- Esri official `Usa.tpkx` works from that path.
+---
 
-## What failed
+## Custom package results
 
-The converter-built District 7 Esri Hybrid Z17 TPKX was discovered by Field Maps but rejected.
-
-Inspection of that package showed expected-looking Web Mercator values:
-
-- WKID 102100 / latestWKID 3857;
-- 256 x 256 tiles;
-- 96 DPI;
-- standard Web Mercator origin;
-- Z0-Z17 LOD sequence.
-
-That means a quick `root.json` glance was not sufficient. Field Maps is enforcing package details more strictly than ArcGIS Earth / Earth Mobile / Pro did for this lineage.
-
-## Why the existing MMPK is now held
-
-ArcGIS Pro successfully created both small and district-scale MMPKs from the project TPKX. That remains a valid packaging proof.
-
-However, ArcGIS Pro preserved the original TPKX intact inside the MMPK under `commondata/new_tpkx/`.
-
-Therefore the current district MMPK contains the same TPKX lineage whose strict Field Maps compatibility is now under repair. Do not treat the old district MMPK as the next gold acceptance object until the underlying TPKX conformance test passes.
-
-## Canonical repair branch
-
-The manufacturing repository now contains the engineering record:
-
-- [Offline GeoStack — TPKX / Field Maps Conformance](https://github.com/Jim-dc95811/Offline-GeoStack/blob/main/docs/TPKX_FIELD_MAPS_CONFORMANCE_2026-08-20.md)
-
-A separate test converter has been built:
+### Historical converter
 
 ```text
-ESRI_CANONICAL_TPKX_TEST_v0_2_0
+project converter TPKX -> REJECTED
 ```
 
-It copies Esri's canonical Web Mercator LOD values and native metadata conventions rather than recalculating or creatively interpreting them.
+Field Maps reported spatial-reference incompatibility.
 
-Bench status: **BUILT / SELF-TESTED**.
+### Canonical v0.3.1
 
-Field Maps acceptance: **PENDING**.
+The custom converter was heavily tightened and passed its local structural/tile audit, including byte-for-byte preservation of all 174 bench tiles.
 
-## Immediate next test
+Real Field Maps result:
 
 ```text
-small MBTiles
--> ESRI_CANONICAL_TPKX_TEST_v0_2_0
--> small new TPKX
--> \Android\data\com.esri.fieldmaps\files\basemaps\
+canonical v0.3.1 TPKX -> REJECTED
+```
+
+Therefore the custom converter remains **nonconformant for Field Maps** despite strong local package checks.
+
+A v0.3.2 PNG metadata experiment exists, but the project did not make that experiment the next production gate.
+
+---
+
+## Production pivot
+
+The deployment path now uses the vendor-native TPKX writer:
+
+```text
+QGIS / GeoTIFF Factory
+-> finished labeled GeoTIFF
+-> ArcGIS Pro Create Map Tile Package
+-> native TPKX
+-> physical card
+-> Field Maps
+```
+
+This preserves QGIS as the rendering engine while ArcGIS Pro owns the TPKX package format.
+
+---
+
+## Small native ArcGIS Pro build proof
+
+QGIS source:
+
+```text
+GeoTIFF
+37,767,543 bytes
+4096 x 3072 RGB
+EPSG:3857
+Z18 source detail
+```
+
+ArcGIS Pro output:
+
+```text
+tiff test 66.tpkx
+38,306,245 bytes
+Z0-Z18
+PNG24
+19 Compact Cache V2 bundles
+creator: CreateMapTilePackage ArcGIS Pro
+```
+
+The native-Pro TPKX build is proven.
+
+Field Maps runtime result for the native-Pro path is still:
+
+**PENDING.**
+
+Do not call it Field Maps LIVE-PROVEN until the real app opens it from the device-basemap workflow.
+
+---
+
+## District 7 next acceptance
+
+A District 7 Esri Satellite + Google Labels GeoTIFF build was started at:
+
+```text
+Z17
+map units per pixel = 1.19432856685505
+```
+
+After the GeoTIFF completes:
+
+```text
+District 7 GeoTIFF
+-> ArcGIS Pro Create Map Tile Package Z0-Z17
+-> copy native TPKX to basemaps folder
 -> Designer exact filename
 -> Field Maps
 ```
 
-If that passes, regenerate the district TPKX with the corrected converter, then rebuild the MMPK around the corrected TPKX and resume the full cold/no-Internet district-card test.
+That is the next full district acceptance path.
+
+---
+
+## GeoTIFF Factory
+
+`GEOTIFF FACTORY 0.1.2 TEST` has been built to automate the QGIS side with the established two-point extent workflow and Z16-Z20 detail choices.
+
+Status:
+
+**BUILT / BENCH-CHECKED — LIVE WINDOWS/QGIS TEST PENDING.**
+
+It outputs only GeoTIFF and contains no custom TPKX converter.
+
+---
 
 ## Evidence matrix
 
 | Capability | Status |
 | --- | --- |
-| Field Maps Designer + public map + File on the device workflow | ✅ **LIVE-PROVEN** |
-| Physical microSD `basemaps` path | ✅ **LIVE-PROVEN** |
-| Esri official `Usa.tpkx` in Field Maps | ✅ **LIVE-PROVEN** |
-| Project historical converter TPKX in Field Maps | ❌ **FAILED / NEEDS REPAIR** |
-| Project historical converter TPKX in ArcGIS Earth Windows | ✅ **LIVE-PROVEN** |
-| Project TPKX lineage in ArcGIS Earth Mobile | ✅ **LIVE-PROVEN on multiple packages** |
-| ArcGIS Pro TPKX -> MMPK packaging bridge | ✅ **PASS** |
-| Canonical test converter v0.2.0 | 🟡 **BUILT / SELF-TESTED; FIELD MAPS TEST PENDING** |
-| Corrected district TPKX | 🟡 **PENDING SMALL-CONFORMANCE PASS** |
-| Corrected district MMPK / full cold card | 🟡 **PENDING CORRECTED TPKX** |
+| Field Maps Designer + File on the device | ✅ LIVE-PROVEN |
+| Physical `basemaps` path | ✅ LIVE-PROVEN |
+| Esri official `Usa.tpkx` in Field Maps | ✅ LIVE-PROVEN |
+| Historical custom TPKX in Field Maps | ❌ FAILED |
+| Canonical v0.3.1 custom TPKX in Field Maps | ❌ FAILED |
+| QGIS labeled GeoTIFF build | ✅ LIVE-PROVEN |
+| ArcGIS Pro GeoTIFF -> native TPKX build | ✅ PASS |
+| ArcGIS Pro native TPKX in Field Maps | 🟡 PENDING |
+| GeoTIFF Factory 0.1.2 TEST | 🟡 BUILT / BENCH-CHECKED |
+| District 7 Z17 GeoTIFF | 🟡 LIVE BUILD STARTED |
 
 ## Governing rule
 
-> **Esri's working TPKX is the reference. Field Maps is the judge.**
+> **For production, let ArcGIS Pro write the native TPKX and let Field Maps make the final compatibility decision.**
